@@ -1,0 +1,48 @@
+.card {
+    border-radius: 2%;
+    width: 20rem;
+    height: fit-content;
+    margin: 50px;
+}
+.price {
+    color: #f00;
+    font-size: 30px;
+    font-weight: bold;       
+}
+.ex-price {
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    text-decoration: line-through;     
+}
+.ex-price-dec{
+    font-size: 15px;
+    text-decoration: line-through;
+}
+.price-decimals {
+    color: #f00;
+    font-size: 18px;
+    vertical-align: text-top;
+}
+.pricing {
+    font-size: 15px;
+}
+.card-title {
+    font-weight: bold;
+    font-size: 25px;
+}
+.card-text {
+    font-size: 20px;
+}
+.card-img-top{
+    align-self: center;
+    margin: 5%;
+    width: 80%;
+    height: 80%;
+    border-radius: 3%
+}
+.btn {
+    border-radius: 3%;
+    width: 20rem;
+    height: fit-content;
+    background-color: #f00;
+}

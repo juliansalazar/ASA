@@ -1,0 +1,26 @@
+.installation-form {
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .installation-form h2 {
+    margin-bottom: 15px;
+  }
+  
+  .installation-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .installation-form input,
+  .installation-form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  
