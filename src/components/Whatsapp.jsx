@@ -6,7 +6,7 @@ const Whatsapp = () => {
     <>
       <div className="App">
       <FloatingWhatsApp 
-      phoneNumber="+593984976911" // WhatsApp business number
+      phoneNumber="+593999966466" // WhatsApp business number
       float={true} // Whether to float or not. Default: true
       floatPosition="right" // Position of the float, options: 'left', 'right', 'top', 'bottom'. Default: 'right'
       sidebar="true" // Whether to have a sidebar. Default: false
