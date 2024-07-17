@@ -17,7 +17,6 @@ const Home = () => {
             <Banner />
             <AdditionalServices />
             <Whatsapp />
-            <GoogleMaps />
             <GoogleReview />
             <NuestrosClientes />
             <Footer />
