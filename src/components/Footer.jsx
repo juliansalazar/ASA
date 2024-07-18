@@ -7,8 +7,8 @@ const Footer = () => {
       <div className="footer-content">
         <p>Todos los derechos reservados. Autocarest &#174; {new Date().getFullYear()}.</p>
         <div className="footer-links">
-          <a href="/contact">Contáctanos</a>
-          <a href="/terms">Política de Privacidad</a>
+          <a href="autocarest.com/contact">Contáctanos</a>
+          <a href="autocarest.com/terms">Política de Privacidad</a>
         </div>
       </div>
     </footer>
