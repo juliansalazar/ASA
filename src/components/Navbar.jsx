@@ -17,7 +17,7 @@ const BasicExample = () => {
             <NavLink to="/login">Iniciar Sesión</NavLink>
             <NavDropdown title="Quick Links" id="basic-nav-dropdown">
               <NavDropdown.Item href="https://calendly.com/autocarest/citaprogramada">Agendar 30 minutos</NavDropdown.Item>
-              <NavDropdown.Item href="tel:+59398496911">Llamar</NavDropdown.Item>
+              <NavDropdown.Item href="tel:+593999966466">Llamar</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="https://api.whatsapp.com/send/?phone=+593999966466&text=Hola Autocarest, mi nombre es ">
                 Whatsapp
