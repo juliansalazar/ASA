@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { reset, login } from '../features/auth/authSlice'
 import Navbar from '../components/Navbar'
@@ -63,7 +63,7 @@ const Login = () => {
                 <FaSignInAlt />
                 <h4>Ingresa a la App</h4>
                 <p>Por favor escribe tu email y contraseña </p>
-                <p>¿Aun no tienes cuenta? <a href="/register" className='registerlink'>Registrate aquí</a> </p>
+                <p>¿Aun no tienes cuenta? <NavLink to="/register" className='registerlink'>Registrate aquí</NavLink> </p>
             </section>
             
             <section className="form">
