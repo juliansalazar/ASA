@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/Footer.css'; // Asegúrate de crear un archivo CSS para estilizar tu footer
 
+
 const Footer = () => {
   return (
     <footer className="footer">

@@ -16,7 +16,6 @@ function App() {
   return (
     <>
       <Router>
-        <div>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -26,7 +25,6 @@ function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/store" element={<Store />} />
           </Routes>
-        </div>
       </Router>
       <ToastContainer position="top-right" />  
     </>
