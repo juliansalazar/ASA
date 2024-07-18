@@ -13,8 +13,8 @@ const BasicExample = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/about">Nosotros</Nav.Link>
-            <Nav.Link href="/login">Iniciar Sesión</Nav.Link>
+            <NavLink to="/about">Nosotros</NavLink>
+            <NavLink to="/login">Iniciar Sesión</NavLink>
             <NavDropdown title="Quick Links" id="basic-nav-dropdown">
               <NavDropdown.Item href="https://calendly.com/autocarest/citaprogramada">Agendar 30 minutos</NavDropdown.Item>
               <NavDropdown.Item href="tel:+59398496911">Llamar</NavDropdown.Item>
