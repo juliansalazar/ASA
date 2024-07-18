@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8080/api/placas/'
+const API_URL = 'http://autocarest.com/api/placas/'
 
 //Crear Tarea
 const crearPlaca = async (placaData, token) => {
