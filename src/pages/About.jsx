@@ -4,7 +4,6 @@ import Footer from '../components/Footer'
 
 const About = () => {
     return (
-
         <>
             <Navbar />
             <div className="about-container">
