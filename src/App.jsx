@@ -9,6 +9,7 @@ import Terms from './pages/Terms'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Store from './pages/Store'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 function App() {
