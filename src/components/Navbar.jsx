@@ -17,13 +17,13 @@ const Navbar = () => {
             </div>
             <ul>
                 <li>
-                    <NavLink to="autocarest.com/about">Nosotros</NavLink>
+                    <NavLink to="/about">Nosotros</NavLink>
                 </li>
                 <li>
-                    <NavLink to="autocarest.com/">Servicios</NavLink>
+                    <NavLink to="/">Servicios</NavLink>
                 </li>
                 <li>
-                    <NavLink to="autocarest.com/login">Iniciar Sesión</NavLink>
+                    <NavLink to="/login">Iniciar Sesión</NavLink>
                 </li>
                 
             </ul>
