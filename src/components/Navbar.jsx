@@ -1,9 +1,15 @@
-import '../styles/Navbar.css'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link, NavLink } from 'react-router-dom'
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { GrMapLocation } from "react-icons/gr";
+import { VscCallOutgoing } from "react-icons/vsc";
+import { LuCalendarClock } from "react-icons/lu";
+import { FaWhatsapp } from "react-icons/fa";
+import { CiLogin } from "react-icons/ci";
+
+
+
 
 const BasicExample = () => {
   return (
@@ -13,16 +19,10 @@ const BasicExample = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink to="/about">Nosotros</NavLink>
-            <NavLink to="/login">Iniciar Sesión</NavLink>
-            <NavDropdown title="Quick Links" id="basic-nav-dropdown">
-              <NavDropdown.Item href="https://calendly.com/autocarest/citaprogramada">Agendar 30 minutos</NavDropdown.Item>
-              <NavDropdown.Item href="tel:+593999966466">Llamar</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="https://api.whatsapp.com/send/?phone=+593999966466&text=Hola Autocarest, mi nombre es ">
-                Whatsapp
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="https://www.google.com/maps/search/Autocarest/@-2.9016935,-79.0299089,17z/data=!3m1!4b1?entry=ttu"> <GrMapLocation/> Encuentranos</Nav.Link>
+            <Nav.Link href="https://wa.me/+59399773001?text=I'm%20inquiring%20about%20the%20apartment%20listing"> <FaWhatsapp/> Escribenos</Nav.Link>
+            <Nav.Link href="tel:+593999966466"> <VscCallOutgoing/> Llamanos</Nav.Link>
+            <Nav.Link> <LuCalendarClock/> Lun - Vie 8h30am a 5h00pm </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
