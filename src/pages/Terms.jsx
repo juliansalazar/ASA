@@ -9,7 +9,7 @@ const Terms = () => {
         <Navbar />
         <div className="terms-container">
         <h1>Términos y Condiciones de Uso de Datos</h1>
-
+        <br />
         <section>
             <h2>1. Introducción</h2>
             <p>
@@ -82,10 +82,12 @@ const Terms = () => {
             <h2>9. Contacto</h2>
             <p>Si tiene alguna pregunta o inquietud sobre estos términos y condiciones o sobre el uso de sus datos personales, por favor, contáctenos a través de:</p>
             <address>
-            Autocarest Cia. Ltda.<br />
-            Dirección: [Dirección de tu taller]<br />
-            Correo electrónico: [Tu correo electrónico]<br />
-            Teléfono: [Tu número de teléfono]
+            <br />
+            <h5>Autocarest Cia. Ltda.</h5>
+            Dirección: Victor Aguilar S/N & Av. Americas<br />
+            Correo electrónico: <a href='mailto:autocarest20@gmail.com'>autocarest20@gmail.com</a>
+            <br />
+            Teléfono: 4093773 Ext: 3
             </address>
             <br />
         </section>

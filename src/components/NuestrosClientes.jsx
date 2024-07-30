@@ -1,16 +1,14 @@
 import React from 'react'
 
-
-// En este componente vamos a publicar en una fila los logos de nuestros clientes
-
-// MAp los logos en el return
-
 const NuestrosClientes = () => {
+
   return (
-    <div className="row">
-      
+    <div className='container'>
+      <h1>Nuestros Clientes</h1>
+      <p>Aquí encontrarás logos de nuestros clientes.</p>
     </div>
   )
 }
+
 
 export default NuestrosClientes

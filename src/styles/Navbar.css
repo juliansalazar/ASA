@@ -56,16 +56,13 @@ nav .menu span {
     border-radius: 0.2rem;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1000px) {
     nav .menu {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
         background-color: #2f2891;
     }
 }
 
-@media (max-width: 1500px) {
-    nav ul li a {
-        display: none
-    }

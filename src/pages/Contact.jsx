@@ -1,6 +1,7 @@
 // src/ContactUs.jsx
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar'
+import '../styles/Contact.css';
 import Footer from '../components/Footer'
 import emailjs from 'emailjs-com';
 
@@ -22,35 +23,35 @@ const Contact = () => {
         e.target.reset()
       };
     return (
-    <>  
-        <Navbar />
-        <section className='heading'>
-            <br />
-            <h3>Contáctanos</h3>
-            <h6>Te daremos una respuesta en menos de 24 horas.</h6>
-        </section>
-        <section className='form'>
-            <div>
-                <form className="formContainer" onSubmit={handleOnSubmit}>    
-                    <div className="form-group">
-                        <label>Nombre y Apellido: </label>
-                        <input type="text" id="from_name" name="from_name" placeholder="Julian Salazar" required />
-                    </div>
-                    <div className="form-group">
-                        <label>E-mail: </label>
-                        <input type="email" id="from_email" name="from_email" placeholder="julian@gmail.com" required />
-                    </div>
-                    <div className="form-group">
-                        <label>Mensaje: </label>
-                        <br />
-                        <textarea name="message" rows="8" cols="30" placeholder="Cuentanos, ¿en qué podemos ayudarte?" required />
-                    </div>
-                    <button type='submit' className='btn btn-block'>Enviar</button>
-                </form>
+        <>  
+            <Navbar />
+            <div className='contact-container'>
+            <section className='contact heading'>
+                <h3>Contáctanos</h3>
+                <h6>Te daremos una respuesta en menos de 24 horas.</h6>
+            </section>
+            <section className='form'>
+                <div>
+                    <form className="formContainer" onSubmit={handleOnSubmit}>    
+                        <div className="form-group">
+                            <label>Nombre y Apellido: </label>
+                            <input type="text" id="from_name" name="from_name" placeholder="Julian Salazar" required />
+                        </div>
+                        <div className="form-group">
+                            <label>E-mail: </label>
+                            <input type="email" id="from_email" name="from_email" placeholder="julian@gmail.com" required />
+                        </div>
+                        <div className="form-group">
+                            <label>Mensaje: </label>
+                            <textarea name="message" rows="8" cols="30" placeholder="Cuentanos, ¿en qué podemos ayudarte?" required />
+                        </div>
+                        <button type='submit' className='btn btn-block'>Enviar</button>
+                    </form>
+                </div>
+            </section>
             </div>
-        </section>
-        <Footer />
-    </>
+            <Footer />
+        </>
     )
 }
 

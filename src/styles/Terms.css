@@ -1,11 +1,10 @@
 /* TermsAndConditions.css */
 
 .terms-container {
-  padding: 20px 0 100px;
+  padding-top: 90px;
   max-width: 80%;
-  margin: 0 auto;
+  margin: auto;
   line-height: 1.6;
-    
   }
   
   h1, h2, h3 {

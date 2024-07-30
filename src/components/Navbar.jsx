@@ -1,22 +1,17 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { GrMapLocation } from "react-icons/gr";
 import { VscCallOutgoing } from "react-icons/vsc";
 import { LuCalendarClock } from "react-icons/lu";
 import { FaWhatsapp } from "react-icons/fa";
-import { CiLogin } from "react-icons/ci";
-
-
-
 
 const BasicExample = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand href="/" >AUTOCAREST</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle className="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="https://www.google.com/maps/search/Autocarest/@-2.9016935,-79.0299089,17z/data=!3m1!4b1?entry=ttu"> <GrMapLocation/> Encuentranos</Nav.Link>

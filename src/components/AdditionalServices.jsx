@@ -7,10 +7,10 @@ import { BsHouses } from "react-icons/bs";
 
 const AdditionalServices = () => {
   return (
-    <div className='AddServ'>
-      <h2>Servicios Adicionales a Domicilio</h2>
-      <ul>
-        <li> <FaTruckPickup/> Pickup & Delivery de Vehículos</li>
+    <div className='container' style={{padding: '20px'}}>
+      <h1>Servicios Adicionales a Domicilio</h1>
+      <ul className='container'>
+        <li> <FaTruckPickup/> <a href='/'> Pickup & Delivery de Vehículos </a> </li>
         <li> <FaCarBattery/> Instalación de Baterías</li>
         <li> <GiFlatTire /> Cambio de Llantas</li>
         <li><BsHouses /> Revisión Técnica Liviana</li>
