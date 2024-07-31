@@ -1,5 +1,8 @@
 import React from 'react';
-import '../styles/Footer.css'; // Asegúrate de crear un archivo CSS para estilizar tu footer
+import '../styles/Footer.css';
+import { NavLink } from 'react-bootstrap';
+// Import Navigate 
+
 
 
 const Footer = () => {
@@ -8,8 +11,8 @@ const Footer = () => {
       <div className="footer-content">
         <p>Todos los derechos reservados.</p>
         <div className="footer-links">
-          <a href="/contact">Contáctanos</a>
-          <a href="/terms">Política de Privacidad</a>
+          <NavLink href="/contact">Contáctanos</NavLink>
+          <NavLink href="/terms">Política de Privacidad</NavLink>
         </div>
       </div>
     </footer>

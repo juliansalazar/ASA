@@ -56,12 +56,10 @@ nav .menu span {
     border-radius: 0.2rem;
 }
 
-@media (max-width: 1000px) {
-    nav .menu {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #2f2891;
+
+
+@media (min-width: 100px) and (max-width: 400px) {
+    .navbar-brand {
+      font-size: 1em;
     }
-}
+  }

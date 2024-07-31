@@ -10,7 +10,7 @@ const BasicExample = () => {
   return (
     <Navbar expand="lg" className="bg-body">
       <Container>
-        <Navbar.Brand href="/" >AUTOCAREST</Navbar.Brand>
+        <Navbar.Brand href="/">Autocarest</Navbar.Brand>
         <Navbar.Toggle className="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
