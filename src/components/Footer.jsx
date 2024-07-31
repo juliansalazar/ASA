@@ -1,8 +1,6 @@
 import React from 'react';
 import '../styles/Footer.css';
 import { NavLink } from 'react-bootstrap';
-// Import Navigate 
-
 
 
 const Footer = () => {
