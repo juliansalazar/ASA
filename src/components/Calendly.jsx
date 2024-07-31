@@ -8,7 +8,7 @@ const Calendly = () => {
     <>
       <div className='conatiner'>
         <InlineWidget styles={{
-          height: '800px',
+          height: '900px',
           width: '100%',
 
         }}
