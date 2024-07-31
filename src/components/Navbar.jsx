@@ -8,7 +8,7 @@ import { FaWhatsapp } from "react-icons/fa";
 
 const BasicExample = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="sm" className="bg-body">
       <Container>
         <Navbar.Brand href="/" >AUTOCAREST</Navbar.Brand>
         <Navbar.Toggle className="basic-navbar-nav" />
