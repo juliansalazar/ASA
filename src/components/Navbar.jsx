@@ -1,28 +1,41 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import React, { useState } from "react";
+import "../styles/Navbar.css";
+import { Link } from 'react-router-dom'
 import { GrMapLocation } from "react-icons/gr";
 import { VscCallOutgoing } from "react-icons/vsc";
 import { LuCalendarClock } from "react-icons/lu";
 import { FaWhatsapp } from "react-icons/fa";
 
 const BasicExample = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  
   return (
-    <Navbar expand="lg" className="bg-body">
-      <Container>
-        <Navbar.Brand href="/">Autocarest</Navbar.Brand>
-        <Navbar.Toggle className="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="https://www.google.com/maps/search/Autocarest/@-2.9016935,-79.0299089,17z/data=!3m1!4b1?entry=ttu"> <GrMapLocation/> Encuentranos</Nav.Link>
-            <Nav.Link href="https://wa.me/+59399773001?text=I'm%20inquiring%20about%20the%20apartment%20listing"> <FaWhatsapp/> Escribenos</Nav.Link>
-            <Nav.Link href="tel:+593999966466"> <VscCallOutgoing/> Llamanos</Nav.Link>
-            <Nav.Link> <LuCalendarClock/> Lun - Vie 8h30am a 5h00pm </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    
+    <>
+      <nav>
+        <Link to="/" className="title">Autocarest</Link>
+        <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+        <ul className={menuOpen ? "open" : ""}>
+          <li>
+            <Link to="https://www.google.com/maps/search/Autocarest/@-2.9016935,-79.0299089,17z/data=!3m1!4b1?entry=ttu" > <GrMapLocation/> Encuéntranos</Link>
+          </li>
+          <li>
+            <Link to="https://wa.me/+59399773001?text=Hola%20Autocarest,%20mi%20nombre%20es%20"> <FaWhatsapp/> Escríbenos</Link>
+          </li>
+          <li>
+            <Link to="tel:+59399966466"> <VscCallOutgoing/> Llámanos</Link>
+          </li>
+          <li>
+            <Link to="/agenda"> <LuCalendarClock/> Agenda </Link>
+          </li>
+        </ul>
+        </div>
+      </nav>
+    </>    
   );
 }
 

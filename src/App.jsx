@@ -6,9 +6,10 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Terms from './pages/Terms'
-import About from './pages/About'
+import AboutUs from './pages/AboutUs'
 import Contact from './pages/Contact'
 import Store from './pages/Store'
+import Agenda from './pages/Agenda'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -21,10 +22,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/store" element={<Store />} />
+            <Route path="/agenda" element={<Agenda />} />
           </Routes>
       </Router>
       <ToastContainer position="top-right" />  

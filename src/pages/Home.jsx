@@ -5,7 +5,6 @@ import AdditionalServices from '../components/AdditionalServices'
 import GoogleReview from '../components/GoogleReview'
 import Whatsapp from '../components/Whatsapp'
 import NuestrosClientes from '../components/NuestrosClientes'
-import Calendly from '../components/Calendly'
 
 const Home = () => {
 
@@ -14,7 +13,6 @@ const Home = () => {
             <Whatsapp />
             <Navbar />
             <Banner />
-            <Calendly />
             <AdditionalServices />
             <NuestrosClientes />
             <GoogleReview />

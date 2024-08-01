@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import '../styles/Contact.css';
 import Footer from '../components/Footer'
 import emailjs from 'emailjs-com';
+import Whatsapp from '../components/Whatsapp'
 
 const SERVICE_ID = "contact_service";
 const TEMPLATE_ID = "contact_form";
@@ -24,6 +25,7 @@ const Contact = () => {
       };
     return (
         <>  
+            <Whatsapp />
             <Navbar />
             <div className='contact-container'>
             <section className='contact heading'>

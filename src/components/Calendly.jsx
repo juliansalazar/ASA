@@ -8,8 +8,8 @@ const Calendly = () => {
     <>
       <div className='conatiner'>
         <InlineWidget styles={{
-          height: '900px',
-          width: '100%'
+          padding: '10px',
+          height: '1000px',    
         }}
         url="https://calendly.com/autocarest/citaprogramada" />
       </div>

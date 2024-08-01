@@ -85,7 +85,7 @@ const Terms = () => {
             <br />
             <h5>Autocarest Cia. Ltda.</h5>
             Dirección: Victor Aguilar S/N & Av. Americas<br />
-            Correo electrónico: <a href='mailto:autocarest20@gmail.com'>autocarest20@gmail.com</a>
+            Correo electrónico: autocarest20@gmail.com
             <br />
             Teléfono: 4093773 Ext: 3
             </address>
