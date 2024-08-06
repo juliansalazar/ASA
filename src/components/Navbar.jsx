@@ -24,7 +24,7 @@ const BasicExample = () => {
             <Link to="https://www.google.com/maps/search/Autocarest/@-2.9016935,-79.0299089,17z/data=!3m1!4b1?entry=ttu" > <GrMapLocation/> Encuéntranos</Link>
           </li>
           <li>
-            <Link to="https://wa.me/+59399773001?text=Hola%20Autocarest,%20mi%20nombre%20es%20"> <FaWhatsapp/> Escríbenos</Link>
+            <Link to="https://wa.me/+593999966466?text=Hola%20Autocarest,%20mi%20nombre%20es%20"> <FaWhatsapp/> Escríbenos</Link>
           </li>
           <li>
             <Link to="tel:+59399966466"> <VscCallOutgoing/> Llámanos</Link>
