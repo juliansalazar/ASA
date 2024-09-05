@@ -17,13 +17,13 @@ function Carrusel() {
     <div className="slider-container">
       <Slider {...settings}>
         <div>
-          <a href="https://wa.me/+593999966466?text=Hola%20Autocarest,%20estoy%20interesado%20en%20agendar%20una%20cita.%20PROMOWEB:%2050%OFF">
-            <Banner />
+          <a href="https://wa.me/+593999966466?text=Hola%20Autocarest,%20estoy%20interesado%20en%20llantas.%20PROMOWEB:%20LLANTAS">
+            <Banner2 />
           </a>
         </div>
         <div>
-          <a href="https://wa.me/+593999966466?text=Hola%20Autocarest,%20estoy%20interesado%20en%20llantas.%20PROMOWEB:%20LLANTAS">
-            <Banner2 />
+          <a href="https://wa.me/+593999966466?text=Hola%20Autocarest,%20estoy%20interesado%20en%20agendar%20una%20cita.%20PROMOWEB:%2050%OFF">
+            <Banner />
           </a>
         </div>
         <div>
