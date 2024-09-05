@@ -1,6 +1,5 @@
 import React from "react";
 import Slider from "react-slick";
-
 function NuestrosClientes() {
   const settings = {
     dots: false,

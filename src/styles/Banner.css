@@ -1,3 +1,30 @@
 .banner {
     padding-top: 75px;
+    height: 500px;
+}
+
+.banner div {
+    text-align: center;
+    color: #ffffff;
+    height: auto;
+}
+
+.banner div div {
+    text-align: center;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.container {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.btn {
+    border-radius: 5px;
+    color: #fff;center;
+    text-decoration: none;
+    margin: 10px;
+    transition: background-color 0.3s ease-in-out;
 }
