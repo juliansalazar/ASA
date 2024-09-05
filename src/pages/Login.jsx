@@ -6,9 +6,10 @@ import { toast } from 'react-toastify'
 import { reset, login } from '../features/auth/authSlice'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { Spinner } from 'react-bootstrap'
 
 const Login = () => {
-
+    
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -22,6 +23,11 @@ const Login = () => {
     const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
     useEffect(() => {
+
+        if (isLoading) {
+            console.log('Loading')
+            return <Spinner />
+        }
 
         if (isError) {
             toast.error(message)
@@ -51,7 +57,7 @@ const Login = () => {
         }
 
         dispatch(login(userData))
-        navigate('/Home')
+        navigate('/agenda')
     }
 
 
