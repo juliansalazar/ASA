@@ -9,7 +9,7 @@ const Banner2 = () => {
           <h3 className="display-4">¿Llantas?</h3>
           <h3 className="display-4">Cotiza en Autocarest</h3>
           <h3 className="lead">Somos Distrubuidores Autorizados:</h3>
-          <h3 className="display-4">Maxxis - Farroad - Pirelli</h3>
+          <h3 className="display-4">Maxxis - Farroad - CST</h3>
           <a className="btn" role="button" href="https://wa.me/+593999966466?text=Hola%20Autocarest,%20estoy%20interesado%20en%llantas.%20PROMOWEB:%20LLANTAS"> <FaWhatsapp /> COTIZA AQUÍ </a>
         </div>
       </div>
