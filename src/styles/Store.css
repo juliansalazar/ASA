@@ -1,0 +1,38 @@
+/* Store.css */
+
+/* Contenedor principal de la tienda */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f5f7fb; /* Fondo claro como en la imagen */
+  }
+  
+  /* Contenedor de las tarjetas en diseño horizontal con ajuste a líneas */
+  .products-horizontal {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las tarjetas se ajusten a nuevas líneas */
+    gap: 0.5rem; /* Espacio entre tarjetas ajustado para coincidir con la imagen */
+    justify-content: flex-start; /* Alinea las tarjetas al inicio */
+  }
+  
+  /* Opcional: Ajuste de ancho mínimo para las tarjetas en pantallas pequeñas */
+  @media (max-width: 768px) {
+    .content {
+      flex: 0 0 100%; /* En pantallas pequeñas, cada tarjeta ocupa el 100% del ancho */
+    }
+  }
+  
+  /* Estilizado de la barra de desplazamiento (opcional, se puede quitar si no se usa desplazamiento) */
+  .products-horizontal::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .products-horizontal::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  .products-horizontal::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

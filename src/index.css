@@ -1,5 +1,9 @@
+/* index.css */
+
+/* Importación de fuentes */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
+/* Reset y configuraciones globales */
 * {
   margin: 0;
   padding: 0;
@@ -8,17 +12,28 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  height: 100%;
+  line-height: 1.6; /* Mejora la legibilidad */
+  color: #333;
+  background-color: #f5f7fb; /* Fondo claro consistente con tu diseño */
+  min-height: 100vh; /* Asegura que el cuerpo ocupe al menos el alto de la ventana */
   margin: 0;
 }
 
+/* Estilos para enlaces */
 a {
   text-decoration: none;
-  color: #000;
+  color: #2c3e50; /* Azul oscuro como en tu diseño */
+  transition: color 0.3s ease; /* Transición suave */
 }
 
+a:hover {
+  color: #34495e; /* Cambio sutil al pasar el mouse */
+}
+
+/* Estilos para párrafos y listas */
 p {
   line-height: 1.7;
+  color: #7f8c8d; /* Gris suave para texto secundario */
 }
 
 ul {
@@ -26,36 +41,85 @@ ul {
 }
 
 li {
-  margin-bottom: 10px;
+  line-height: 2.2;
+  color: #333;
 }
 
+/* Encabezados */
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  margin-bottom: 1rem; /* Usamos rem para escalabilidad */
+  color: #2c3e50; /* Azul oscuro para coherencia */
+}
+
+/* Contenedor principal */
 .container {
   width: 100%;
-  text-align: center;
-}
-
-.heading {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 50px;
+  max-width: 1200px; /* Aumentado para dar más espacio */
+  margin: 0 auto;
   padding: 0 20px;
   text-align: center;
 }
 
-.heading p {
-  font-size: 14px;
+/* Navbar */
+.navbar {
+  z-index: 999;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Alinea elementos a los lados */
+  align-items: center; /* Centra verticalmente */
+  padding: 15px 100px;
+  background-color: #2c3e50; /* Fondo azul oscuro */
+  color: white;
 }
 
+.navbar a {
+  color: white;
+  margin-left: 20px;
+}
+
+.navbar a:hover {
+  color: #ecf0f1; /* Color más claro al hover */
+}
+
+/* Heading */
+.heading {
+  font-size: 2.5rem; /* Aumentado para mayor impacto */
+  font-weight: 700;
+  margin-bottom: 2rem;
+  padding: 0 20px;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.heading p {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+/* Tarjetas y tareas */
 .tareas {
   display: grid;
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 1.5rem; /* Espacio consistente */
+  padding: 20px 0;
 }
 
 .tarea {
-  background-color: #f4f4f4;
+  background-color: #fff;
+  border-radius: 8px;
   margin: 10px 0;
-  padding: 20px 10px 10px;
+  padding: 1rem;
   position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease;
+}
+
+.tarea:hover {
+  transform: translateY(-5px); /* Efecto hover */
 }
 
 .tarea .close {
@@ -65,68 +129,96 @@ li {
   cursor: pointer;
   border: none;
   background: none;
+  font-size: 1.2rem;
+  color: #e74c3c;
 }
 
-.form,
+.tarea .close:hover {
+  color: #c0392b; /* Rojo más oscuro al hover */
+}
 
+/* Formularios y contenido */
+.form,
 .content {
   width: 70%;
   margin: 0 auto;
+  max-width: 600px; /* Límite máximo para mejor control */
 }
 
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 10px;
+  padding: 0.75rem;
   border: 1px solid #e6e6e6;
   border-radius: 5px;
-  margin-bottom: 10px;
-  font-family: inherit;
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #2c3e50;
+  outline: none;
 }
 
 .form-group label {
   text-align: left;
   display: block;
-  margin: 0 0 5px 3px;
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+  font-weight: 600;
 }
 
+/* Botones */
 .btn {
-  width: 80%;
-  margin: 10px;
-  border: none;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #2c3e50;
   border-radius: 5px;
-  background: #2f2891;
+  background: #2c3e50;
   color: #fff;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .btn svg {
-  margin-right: 8px;
+  margin-right: 0.5rem;
 }
 
 .btn-reverse {
   background: #fff;
-  color: #000;
+  color: #2c3e50;
 }
 
 .btn-block {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 .btn:hover {
-  transform: scale(0.98);
-  color: #000000;
-  background: #ffffff;
-  border-color: #000;
+  transform: scale(1.02);
+  background: #34495e; /* Tono más oscuro al hover */
 }
 
+.btn-reverse:hover {
+  background: #f1ecec;
+  color: #2c3e50;
+}
+
+/* Spinner de carga */
 .loadingSpinnerContainer {
   position: fixed;
   top: 0;
@@ -144,13 +236,84 @@ li {
   width: 64px;
   height: 64px;
   border: 8px solid;
-  border-color: #000 transparent #555 transparent;
+  border-color: #2c3e50 transparent #34495e transparent;
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }
 
-.registerlink{
+/* Enlaces de registro */
+.registerlink {
   text-decoration: none;
-  color: #c91010;
+  color: #e74c3c;
   text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.registerlink:hover {
+  color: #c0392b;
+}
+
+/* Animación */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 960px) {
+  .container {
+    max-width: 90%;
+    padding: 0 15px;
+  }
+
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .tareas {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste para pantallas medianas */
+  }
+}
+
+@media (max-width: 600px) {
+  .form,
+  .content {
+    width: 90%;
+  }
+
+  .heading h1 {
+    font-size: 2rem;
+  }
+
+  .heading p {
+    font-size: 1rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .navbar a {
+    margin: 0.5rem 0;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .tarea {
+    padding: 0.75rem;
+  }
+
+  .card-img-top {
+    height: 120px; /* Ajuste para pantallas muy pequeñas */
+  }
 }

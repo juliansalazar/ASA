@@ -1,0 +1,102 @@
+/* General */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo del contenedor de login */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px;
+}
+
+.login-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    text-align: center;
+}
+
+.login-header {
+    margin-bottom: 30px;
+}
+
+.login-header h4 {
+    font-size: 1.8rem;
+    margin: 10px 0;
+    font-weight: 600;
+    color: #2f2891; /* Usamos el azul como color principal */
+}
+
+.login-header p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.registerlink {
+    color: #2f2891; /* Enlace en el color base */
+    text-decoration: none;
+}
+
+.registerlink:hover {
+    text-decoration: underline;
+}
+
+/* Formulario */
+.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.login-form .form-control:focus {
+    border-color: #2f2891; /* Borde en azul base cuando el campo está enfocado */
+}
+
+.invalid-feedback {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    background-color: #2f2891; /* Fondo del botón en el azul base */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1d1a6e; /* Un tono más oscuro del azul para el hover */
+}
+
+.forgot-password-link {
+    color: #2f2891; /* Enlace de la contraseña olvidada en el azul base */
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}

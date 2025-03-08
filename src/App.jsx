@@ -10,6 +10,7 @@ import AboutUs from './pages/AboutUs'
 import Contact from './pages/Contact'
 import Store from './pages/Store'
 import Agenda from './pages/Agenda'
+import ForgotPassword from './pages/ForgotPassword'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/store" element={<Store />} />
             <Route path="/agenda" element={<Agenda />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
           </Routes>
       </Router>
       <ToastContainer position="top-right" />  

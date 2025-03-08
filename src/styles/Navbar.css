@@ -1,91 +1,151 @@
-.active{
-    background-color: #1d4ed8;
-}
-
+/* General Navbar Styling */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #2f2891;
-    color: white;
+    background: linear-gradient(90deg, #2f2891 0%, #1a1666 100%);
     position: sticky;
     top: 0;
+    padding: 1rem; /* Tamaño fijo, no relativo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    box-sizing: border-box;
+    min-height: 60px; /* Altura mínima fija para consistencia */
 }
 
+/* Titulo en el Navbar */
 nav .title {
-    font-size: 1.5rem;
-    margin: 1rem;
+    font-size: 1.5rem; /* Tamaño fijo, no relativo */
     font-weight: bold;
+    margin: 0 1rem;
     text-decoration: none;
-    color: white;
+    color: aliceblue;
+    transition: color 0.3s ease;
 }
 
+nav .title:hover {
+    color: #dddddd;
+}
+
+/* Enlaces en el Navbar */
 nav ul {
-    margin: 1rem;
-    display:flex;
-    align-content: baseline;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 nav ul li {
-   list-style: none;
-   align-items: center;
+    margin: 0 0.5rem;
 }
 
 nav ul li a {
+    color: aliceblue;
     display: block;
     text-decoration: none;
-    color: white;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem; /* Tamaño fijo */
     border-radius: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1rem; /* Tamaño fijo */
 }
 
+nav ul li a:hover,
+nav ul li a:focus {
+    background-color: #0a0547;
+    color: #ddd;
+    outline: none;
+    box-shadow: 0 0 0 2px #4bb608;
+}
 
+nav ul li a:active {
+    background-color: #05032b;
+}
+
+/* Estilo del enlace de Logout */
+nav .logout-link {
+    color: #fff; /* Color blanco por defecto */
+   
+}
+
+nav .logout-link:hover,
+nav .logout-link:focus {
+    background-color: #1a1666; /* Usamos un tono más oscuro del azul para el hover */
+    color: #fff; /* Mantener el texto blanco al hacer hover */
+    border-radius: 0.3rem; /* Ligero redondeo al hacer hover */
+    padding: 0.5rem 1rem;
+}
+
+nav .logout-link:active {
+    background-color: #05032b; /* Un color más oscuro cuando está activo */
+}
+
+/* Menú hamburguesa */
 nav .menu {
     display: none;
-    position: absolute;
-    top: 0.75rem;
-    right: 0.5rem;
     flex-direction: column;
     justify-content: space-between;
     width: 2.25rem;
-    height: 2rem;
+    height: 1.5rem; /* Altura fija más pequeña y consistente */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 50%; /* Centrado verticalmente */
+    right: 1rem;
+    transform: translateY(-50%); /* Ajuste preciso del centrado */
 }
 
 nav .menu span {
-    height: 0.4rem;
+    height: 0.3rem; /* Tamaño fijo más delgado */
     width: 100%;
-    background-color: #fff;
+    background-color: white;
     border-radius: 0.2rem;
+    transition: all 0.3s ease;
 }
 
+/* Animación del menú a "X" */
+nav .menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(0.45rem, 0.45rem);
+}
 
-@media (max-width: 700px) {
+nav .menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+nav .menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(0.45rem, -0.45rem);
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
     nav .menu {
-        display: flex;
-    }
-
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex; /* Siempre visible en pantallas pequeñas */
     }
 
     nav ul {
-        display: none;
+        display: none; /* Oculto por defecto */
         flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
         width: 100%;
+        background-color: #2f2891;
+        padding: 1rem 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
-    nav ul.open {
-        display: flex;
+    nav ul.active {
+        display: flex; /* Mostrar cuando está activo */
     }
 
     nav ul li {
-        width: 100%;
-        justify-content: center;
-        padding: 0.15rem;
+        margin: 0.5rem 0;
+        text-align: center;
     }
 
     nav ul li a {
-        margin: 0.2rem 0.5rem;
+        padding: 1rem;
+        margin: 0;
     }
 }

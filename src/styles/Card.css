@@ -1,48 +1,124 @@
-.card {
-    border-radius: 2%;
-    width: 20rem;
+/* Card.css (mantenido igual) */
+
+/* Contenedor principal de cada tarjeta */
+.content {
+    flex: 0 0 auto; /* Para diseño horizontal */
+    width: 18rem; /* Ajustado a un ancho similar al de la imagen */
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  /* Estilo de la tarjeta */
+  .card {
+    border-radius: 8px;
+    width: max-content;
     height: fit-content;
-    margin: 50px;
-}
-.price {
-    color: #f00;
-    font-size: 30px;
-    font-weight: bold;       
-}
-.ex-price {
-    color: rgb(0, 0, 0);
-    font-size: 20px;
-    text-decoration: line-through;     
-}
-.ex-price-dec{
-    font-size: 15px;
-    text-decoration: line-through;
-}
-.price-decimals {
-    color: #f00;
-    font-size: 18px;
-    vertical-align: text-top;
-}
-.pricing {
-    font-size: 15px;
-}
-.card-title {
-    font-weight: bold;
-    font-size: 25px;
-}
-.card-text {
-    font-size: 20px;
-}
-.card-img-top{
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+  }
+  
+  /* Imagen de la tarjeta */
+  .card-img-top {
     align-self: center;
-    margin: 5%;
-    width: 80%;
-    height: 80%;
-    border-radius: 3%
-}
-.btn {
-    border-radius: 3%;
-    width: 20rem;
+    margin: 0.5rem;
+    width: 95%;
+    height: 180px;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+  
+  /* Cuerpo de la tarjeta */
+  .card-body {
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+  
+  /* Título */
+  .card-title {
+    font-weight: 600;
+    font-size: 20px;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Descripción */
+  .card-text {
+    font-size: 14px;
+    width: 100px;
+    display: flexbox;
+    justify-content: center;
+    color: #7f8c8d;
+  }
+  
+  /* Contenedor de precios */
+  .pricing {
+    font-size: 12px;
+    margin-bottom: 0.5rem;
+    color: #7f8c8d;
+  }
+  
+  /* Precio actual */
+  .price {
+    color: #e74c3c;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Decimales del precio */
+  .price-decimals {
+    color: #e74c3c;
+    font-size: 14px;
+    vertical-align: text-top;
+  }
+  
+  /* Precio de lista (anterior) */
+  .list-price {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+  }
+  
+  /* Precio tachado */
+  .ex-price {
+    color: #000;
+    font-size: 14px;
+    text-decoration: line-through;
+  }
+  
+  /* Botón */
+  .btn {
+    border-radius: 4px;
+    width: 100%;
     height: fit-content;
-    background-color: #f00;
-}
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 14px;
+    margin-top: auto;
+  }
+  
+  .btn:hover {
+    background-color: #34495e;
+  }
+  
+  .btn:active {
+    background-color: #1a252f;
+  }

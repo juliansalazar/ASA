@@ -1,7 +1,82 @@
-.AddServ{
-  padding: 20px;
+/* src/AdditionalServices.css */
+.AddServ {
+  padding: 3rem 1rem;
   margin-top: 20px;
   font-size: 20px;
   width: 100%;
   text-align: center;
+}
+
+.AddServ h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem; /* Espacio entre las cards */
+  margin-top: 2rem;
+}
+
+.service-card {
+  background-color: #f8f8f8; /* Fondo más claro para las cards */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Aumento el ancho de las cards */
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none; /* Quitar subrayado de los links */
+  color: inherit; /* Asegurarse de que el texto no cambie de color */
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.service-icon {
+  font-size: 3rem;
+  color: #4CAF50; /* Color verde para los iconos */
+  margin-bottom: 1rem;
+}
+
+.service-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.service-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-card {
+    width: 80%; /* Para pantallas pequeñas, las cards serán más anchas */
+    margin-bottom: 1.5rem;
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.15rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+  }
 }

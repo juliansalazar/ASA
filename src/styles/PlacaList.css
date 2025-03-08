@@ -1,0 +1,73 @@
+/* src/PlacaList.css */
+.placa-list {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.placa-list h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.placas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.placa-card {
+    background-color: #f8f8f8; /* Fondo suave para las cards */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Card un poco más ancha */
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.placa-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.placa-card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.placa-card-btn {
+    background-color: #4CAF50; /* Botón verde para interacción */
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.placa-card-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.placa-card-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .placas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .placa-card {
+        width: 80%;
+    }
+}

@@ -1,16 +1,53 @@
 /* src/AboutUs.css */
 .about-container {
     padding: 20px;
-    max-width: 80%;
-    margin: 200px;
+    max-width: 900px; /* Aumenté el ancho máximo para mayor legibilidad */
+    margin: 0 auto;
+    background-color: #f9f9f9; /* Fondo suave para contrastar con el texto */
+    border-radius: 10px; /* Bordes redondeados para una estética moderna */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para agregar profundidad */
 }
 
-.about-container h1,
+.about-container h1 {
+    font-size: 2.5rem;
+    color: #2c3e50; /* Título en un color más oscuro para mayor contraste */
+    margin-bottom: 1.5rem;
+    font-family: 'Roboto', sans-serif; /* Fuente moderna */
+}
+
 .about-container h2 {
-    color: #333;
+    font-size: 2rem;
+    color: #34495e; /* Un tono más suave que el h1 */
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Roboto', sans-serif; /* Fuente coherente con h1 */
 }
 
 .about-container p {
-    line-height: 1.6;
-    margin-bottom: 1em;
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 1.5em;
+    font-family: 'Arial', sans-serif; /* Fuente alternativa para párrafos */
+    text-align: justify; /* Justificar texto para una presentación más limpia */
+}
+
+/* Mejora de la responsividad */
+@media (max-width: 768px) {
+    .about-container {
+        padding: 15px;
+        max-width: 95%; /* El contenedor se adapta mejor en pantallas más pequeñas */
+    }
+
+    .about-container h1 {
+        font-size: 2rem; /* Reducir tamaño en pantallas pequeñas */
+    }
+
+    .about-container h2 {
+        font-size: 1.6rem; /* Ajustar h2 en dispositivos móviles */
+    }
+
+    .about-container p {
+        font-size: 1rem; /* Ajustar tamaño del texto en pantallas pequeñas */
+    }
 }

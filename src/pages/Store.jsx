@@ -1,43 +1,106 @@
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import Card from '../components/Card'
-import { useEffect, useState } from 'react'
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import Card from '../components/Card';
+import { useState } from 'react';
+import '../styles/Store.css'; // Asegúrate de importar el CSS
 
-const products = [
-    { id: 1, name: 'Product 1', image: 'image1.jpg', description: 'Lorem ipsum dolor sit amet', price: 19.99 },
-    { id: 2, name: 'Product 2', image: 'image2.jpg', description: 'Lorem ipsum dolor sit amet', price: 29.99 },
-    { id: 3, name: 'Product 3', image: 'image3.jpg', description: 'Lorem ipsum dolor sit amet', price: 39.99 },
-    { id: 4, name: 'Product 4', image: 'image4.jpg', description: 'Lorem ipsum dolor sit amet', price: 49.99 },
-    { id: 5, name: 'Product 5', image: 'image5.jpg', description: 'Lorem ipsum dolor sit amet', price: 59.99 },
-]
+const PRODUCTS = [
+  {
+    id: 1,
+    name: 'Bateria Bosch S4',
+    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
+    description: 'Alta duracion y de libre mantenimiento',
+    price: 129.99,
+    listPrice: 150.00,
+  },
+  {
+    id: 2,
+    name: 'Bateria Bosch S5',
+    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
+    description: 'Mayor potencia y durabilidad',
+    price: 149.99,
+    listPrice: 170.00,
+  },
+  {
+    id: 1,
+    name: 'Bateria Bosch S4',
+    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
+    description: 'Alta duracion y de libre mantenimiento',
+    price: 129.99,
+    listPrice: 150.00,
+  },
+  {
+    id: 2,
+    name: 'Bateria Bosch S5',
+    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
+    description: 'Mayor potencia y durabilidad',
+    price: 149.99,
+    listPrice: 170.00,
+  },
+  {
+    id: 1,
+    name: 'Bateria Bosch S4',
+    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
+    description: 'Alta duracion y de libre mantenimiento',
+    price: 129.99,
+    listPrice: 150.00,
+  },
+  {
+    id: 2,
+    name: 'Bateria Bosch S5',
+    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
+    description: 'Mayor potencia y durabilidad',
+    price: 149.99,
+    listPrice: 170.00,
+  },
+  {
+    id: 1,
+    name: 'Bateria Bosch S4',
+    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
+    description: 'Alta duracion y de libre mantenimiento',
+    price: 129.99,
+    listPrice: 150.00,
+  },
+  {
+    id: 2,
+    name: 'Bateria Bosch S5',
+    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
+    description: 'Mayor potencia y durabilidad',
+    price: 149.99,
+    listPrice: 170.00,
+  },
+];
 
 const Store = () => {
+  const [cart, setCart] = useState([]);
 
-    return (
-        <>
-            <Navbar />
-            <section className='container' style={{ 
-                maxWidth: '1200px',
-                margin: '0 auto',
-                padding: '2rem',
-                
+  const handleAddToCart = (product) => {
+    setCart((prevCart) => [...prevCart, product]);
+  };
 
-             }}>
-                <div className='row mt-5'>
-                    <br />
-                    {products.map(product => (
-                        <div key={product.id} className='product-card'>
-                            <img src={product.image} alt={product.name} />
-                            <h2>{product.name}</h2>
-                            <p>{product.description}</p>
-                            <p>${product.price}</p>
-                            <button className='btn'>Add to Cart</button>
-                        </div>
-                    ))}
-                </div>
-            </section>
-            <Footer />
-        </>
-    )
-}
-export default Store
+  const containerStyles = {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '2rem',
+  };
+
+  return (
+    <>
+      <Navbar cartCount={cart.length} />
+      <section className="container" style={containerStyles}>
+        <div className="products-horizontal">
+          {PRODUCTS.map((product) => (
+            <Card
+              key={product.id}
+              product={product}
+              onAddToCart={handleAddToCart}
+            />
+          ))}
+        </div>
+      </section>
+      <Footer />
+    </>
+  );
+};
+
+export default Store;

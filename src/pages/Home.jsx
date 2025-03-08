@@ -1,21 +1,25 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import Banner from '../components/Banner'
 import AdditionalServices from '../components/AdditionalServices'
 import GoogleReview from '../components/GoogleReview'
 import Whatsapp from '../components/Whatsapp'
-import NuestrosClientes from '../components/NuestrosClientes'
-import Carrusel from '../components/Carrusel'
+import PlacaList from '../components/PlacaList'
+import '../styles/Home.css'
+
 
 const Home = () => {
 
     return (
         <>
-            <Whatsapp />
             <Navbar />
-            <Carrusel />
-            <AdditionalServices />
-            <NuestrosClientes />
-            <GoogleReview />
+            <div className="main-content"> {/* Contenedor con margen superior */}
+                <Banner />
+                <AdditionalServices />
+                <PlacaList />
+                <GoogleReview />
+            </div>
+            <Whatsapp />
             <Footer />
         </>
     )

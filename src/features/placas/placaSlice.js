@@ -9,10 +9,13 @@ const initialState = {
     message: ''
 }
 
-//Crear una tarea
+// Crear una placa
 export const crearPlaca = createAsyncThunk('placas/crear', async (placaData, thunkAPI) => {
     try {
-        const token = thunkAPI.getState().auth.user.token
+        const token = thunkAPI.getState().auth.user?.token
+        if (!token) {
+            return thunkAPI.rejectWithValue('No se encontró token de autenticación')
+        }
         return await placaService.crearPlaca(placaData, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
@@ -20,10 +23,13 @@ export const crearPlaca = createAsyncThunk('placas/crear', async (placaData, thu
     }
 })
 
-//Obtener las tareas del usuario
+// Obtener las placas del usuario
 export const getPlacas = createAsyncThunk('placas/get', async (_, thunkAPI) => {
     try {
-        const token = thunkAPI.getState().auth.user.token
+        const token = thunkAPI.getState().auth.user?.token
+        if (!token) {
+            return thunkAPI.rejectWithValue('No se encontró token de autenticación')
+        }
         return await placaService.getPlacas(token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
@@ -31,10 +37,13 @@ export const getPlacas = createAsyncThunk('placas/get', async (_, thunkAPI) => {
     }
 })
 
-//Borrar una tarea
+// Borrar una placa
 export const deletePlaca = createAsyncThunk('placas/delete', async (id, thunkAPI) => {
     try {
-        const token = thunkAPI.getState().auth.user.token
+        const token = thunkAPI.getState().auth.user?.token
+        if (!token) {
+            return thunkAPI.rejectWithValue('No se encontró token de autenticación')
+        }
         return await placaService.deletePlaca(id, token)
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
@@ -52,11 +61,13 @@ export const placaSlice = createSlice({
         builder
             .addCase(crearPlaca.pending, (state) => {
                 state.isLoading = true
+                state.isError = false
+                state.isSuccess = false
+                state.message = ''
             })
             .addCase(crearPlaca.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                console.log(action)
                 state.placas = [...state.placas, action.payload]
             })
             .addCase(crearPlaca.rejected, (state, action) => {
@@ -66,6 +77,9 @@ export const placaSlice = createSlice({
             })
             .addCase(getPlacas.pending, (state) => {
                 state.isLoading = true
+                state.isError = false
+                state.isSuccess = false
+                state.message = ''
             })
             .addCase(getPlacas.fulfilled, (state, action) => {
                 state.isLoading = false
@@ -79,11 +93,14 @@ export const placaSlice = createSlice({
             })
             .addCase(deletePlaca.pending, (state) => {
                 state.isLoading = true
+                state.isError = false
+                state.isSuccess = false
+                state.message = ''
             })
             .addCase(deletePlaca.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.placas = state.placas.filter((placa) => placa._id !== action.payload.id)
+                state.placas = state.placas.filter((placa) => placa._id !== action.meta.arg)
             })
             .addCase(deletePlaca.rejected, (state, action) => {
                 state.isLoading = false
