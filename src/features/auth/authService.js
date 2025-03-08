@@ -1,7 +1,7 @@
 // features/auth/authService.js
 import axios from 'axios';
 
-const API_URL = 'https://asa-back-zs74.onrender.com/api/users';
+const API_URL = 'http://asa-back-zs74.onrender.com/api/users';
 
 const register = async (userData) => {
   const response = await axios.post(`${API_URL}/register`, userData);
