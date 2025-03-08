@@ -1,7 +1,8 @@
 // features/auth/authService.js
 import axios from 'axios';
 
-const API_URL = 'http://asa-back-zs74.onrender.com/api/users';
+// Define la URL del backend en Render con HTTPS
+const API_URL = 'https://asa-back-zs74.onrender.com/api/users';
 
 const register = async (userData) => {
   const response = await axios.post(`${API_URL}/register`, userData);
@@ -24,7 +25,6 @@ const resetPassword = async (email) => {
 };
 
 const logout = async () => {
-  // Limpia localStorage, pero no hace solicitud al backend
   localStorage.removeItem('user');
 };
 
