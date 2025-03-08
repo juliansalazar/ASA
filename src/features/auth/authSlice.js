@@ -1,116 +1,36 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import authService from './authService'
+// features/auth/authService.js
+import axios from 'axios';
 
-// Obtenemos del localStorage los datos del usuario
-const user = JSON.parse(localStorage.getItem('user'))
+const API_URL = 'https://asa-back-zs74.onrender.com/api/users';
 
-const initialState = {
-    user: user ? user : null,
-    isError: false,
-    isSuccess: false,
-    isLoading: false,
-    message: ''
-}
+// Registrar usuario
+const register = async (userData) => {
+  const response = await axios.post(`${API_URL}/register`, userData);
+  return response.data;
+};
 
-// Función para manejar mensajes de error
-const getErrorMessage = (error) => {
-    return (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-}
+// Login de usuario
+const login = async (userData) => {
+  const response = await axios.post(`${API_URL}/login`, userData, {
+    withCredentials: true, // Habilita el envío de cookies si usas el enfoque de cookie en el backend
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return response.data; // Debería incluir token y datos del usuario
+};
 
-// Registrar un nuevo usuario
-export const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
-    try {
-        return await authService.register(user)
-    } catch (error) {
-        return thunkAPI.rejectWithValue(getErrorMessage(error))
-    }
-})
-
-// Logear un usuario
-export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
-    try {
-        const userData = await authService.login(user)
-        localStorage.setItem('user', JSON.stringify(userData))
-        return userData
-    } catch (error) {
-        return thunkAPI.rejectWithValue(getErrorMessage(error))
-    }
-})
-
-// Recuperar la contraseña
-export const resetPassword = createAsyncThunk('auth/resetPassword', async ({ email }, thunkAPI) => {
-    try {
-        return await authService.resetPassword(email);  // Aquí pasas solo el email
-    } catch (error) {
-        return thunkAPI.rejectWithValue(getErrorMessage(error));  // Captura el error y retorna un mensaje adecuado
-    }
-});
-
+// Recuperar contraseña
+const resetPassword = async (email) => {
+  const response = await axios.post(`${API_URL}/reset-password`, { email });
+  return response.data;
+};
 
 // Logout
-export const logout = createAsyncThunk('auth/logout', async () => {
-    await authService.logout()
-    localStorage.removeItem('user')
-})
+const logout = async () => {
+  // No necesitas una solicitud al backend si solo limpias localStorage
+  // Si el backend requiere una acción de logout, descomenta y ajusta:
+  // await axios.post(`${API_URL}/logout`);
+};
 
-export const authSlice = createSlice({
-    name: 'auth',
-    initialState,
-    reducers: {
-        reset: (state) => {
-            state.isLoading = false
-            state.isError = false
-            state.isSuccess = false
-            state.message = ''
-        }
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(register.pending, (state) => {
-                state.isLoading = true
-            })
-            .addCase(register.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.isSuccess = true
-                state.user = action.payload
-                state.message = ''
-            })
-            .addCase(register.rejected, (state, action) => {
-                state.isLoading = false
-                state.isError = true
-                state.message = action.payload
-            })
-            .addCase(login.pending, (state) => {
-                state.isLoading = true
-            })
-            .addCase(login.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.isSuccess = true
-                state.user = action.payload
-            })
-            .addCase(login.rejected, (state, action) => {
-                state.isLoading = false
-                state.isError = true
-                state.message = action.payload
-            })
-            .addCase(resetPassword.pending, (state) => {
-                state.isLoading = true
-            })
-            .addCase(resetPassword.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.isSuccess = true
-                state.message = 'Se ha enviado un enlace a tu correo electrónico para restablecer tu contraseña.'
-            })
-            .addCase(resetPassword.rejected, (state, action) => {
-                state.isLoading = false
-                state.isError = true
-                state.message = action.payload
-            })
-            .addCase(logout.fulfilled, (state) => {
-                state.user = null
-            })
-    }
-})
-
-export const { reset } = authSlice.actions
-export default authSlice.reducer
+export default { register, login, resetPassword, logout };

@@ -9,6 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "proxy": "https://asa-back-zs74.onrender.com",
   "dependencies": {
     "@coreui/react": "^5.1.0",
     "@react-google-maps/api": "^2.19.3",

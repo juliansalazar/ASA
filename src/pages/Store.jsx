@@ -1,78 +1,58 @@
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
-import { useState } from 'react';
-import '../styles/Store.css'; // Asegúrate de importar el CSS
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux'; // Para obtener el usuario autenticado
+import '../styles/Store.css';
 
-const PRODUCTS = [
-  {
-    id: 1,
-    name: 'Bateria Bosch S4',
-    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
-    description: 'Alta duracion y de libre mantenimiento',
-    price: 129.99,
-    listPrice: 150.00,
-  },
-  {
-    id: 2,
-    name: 'Bateria Bosch S5',
-    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
-    description: 'Mayor potencia y durabilidad',
-    price: 149.99,
-    listPrice: 170.00,
-  },
-  {
-    id: 1,
-    name: 'Bateria Bosch S4',
-    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
-    description: 'Alta duracion y de libre mantenimiento',
-    price: 129.99,
-    listPrice: 150.00,
-  },
-  {
-    id: 2,
-    name: 'Bateria Bosch S5',
-    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
-    description: 'Mayor potencia y durabilidad',
-    price: 149.99,
-    listPrice: 170.00,
-  },
-  {
-    id: 1,
-    name: 'Bateria Bosch S4',
-    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
-    description: 'Alta duracion y de libre mantenimiento',
-    price: 129.99,
-    listPrice: 150.00,
-  },
-  {
-    id: 2,
-    name: 'Bateria Bosch S5',
-    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
-    description: 'Mayor potencia y durabilidad',
-    price: 149.99,
-    listPrice: 170.00,
-  },
-  {
-    id: 1,
-    name: 'Bateria Bosch S4',
-    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
-    description: 'Alta duracion y de libre mantenimiento',
-    price: 129.99,
-    listPrice: 150.00,
-  },
-  {
-    id: 2,
-    name: 'Bateria Bosch S5',
-    image: 'https://boschecuador.com/productos_gallery/img/51559231e9b918da84cbeb49bcb42aa8.jpg',
-    description: 'Mayor potencia y durabilidad',
-    price: 149.99,
-    listPrice: 170.00,
-  },
-];
-
+// Componente Store
 const Store = () => {
+  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Obtener el usuario autenticado desde Redux
+  const { user } = useSelector((state) => state.auth);
+
+  // Obtener productos desde el backend
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get('https://asa-back-zs74.onrender.com/api/products');
+        setProducts(response.data);
+      } catch (err) {
+        setError('Error al cargar los productos');
+        console.error('Error fetching products:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Opcional: Obtener datos protegidos del usuario (si es necesario)
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (user && user.token) {
+        try {
+          const response = await axios.get('https://asa-back-zs74.onrender.com/api/users/data', {
+            headers: {
+              Authorization: `Bearer ${user.token}`, // Enviar token para rutas protegidas
+            },
+          });
+          console.log('Datos del usuario:', response.data);
+        } catch (err) {
+          console.error('Error fetching user data:', err);
+        }
+      }
+    };
+
+    fetchUserData();
+  }, [user]);
 
   const handleAddToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
@@ -84,12 +64,36 @@ const Store = () => {
     padding: '2rem',
   };
 
+  if (loading) {
+    return (
+      <>
+        <Navbar cartCount={cart.length} />
+        <section className="container" style={containerStyles}>
+          <p>Cargando productos...</p>
+        </section>
+        <Footer />
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Navbar cartCount={cart.length} />
+        <section className="container" style={containerStyles}>
+          <p>{error}</p>
+        </section>
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <Navbar cartCount={cart.length} />
       <section className="container" style={containerStyles}>
         <div className="products-horizontal">
-          {PRODUCTS.map((product) => (
+          {products.map((product) => (
             <Card
               key={product.id}
               product={product}
