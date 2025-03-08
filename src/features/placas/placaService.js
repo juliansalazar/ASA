@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://autocarest.com/api/placas/'
+const API_URL = 'https://asa-back-zs74.onrender.com/api/placas/'
 
 //Crear Tarea
 const crearPlaca = async (placaData, token) => {
