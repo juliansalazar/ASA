@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const API_URL = 'http://autocarest.com/api/users/'
+const API_URL = 'https://autocarest.com/api/users/'
 
 // Función para registrar un nuevo usuario
 const register = async (userData) => {
