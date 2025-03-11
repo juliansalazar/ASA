@@ -17,28 +17,31 @@ const LoyaltyPointsSummary = () => {
       setError('No hay usuario autenticado');
       return;
     }
-
+  
     try {
       setLoading(true);
       setError(null);
-
+  
+      console.log('Fetching points from:', backendUrl); // Depuración
       const response = await fetch(backendUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // Si usas autenticación con token, descomenta y ajusta:
-          // 'Authorization': `Bearer ${user.token}`,
+          // 'Authorization': `Bearer ${user.token}`, // Si aplica
         },
         body: JSON.stringify({ userId: user._id }),
       });
-
+  
       if (!response.ok) {
-        throw new Error(`Error ${response.status}: ${response.statusText}`);
+        const errorText = await response.text();
+        throw new Error(`Error ${response.status}: ${errorText}`);
       }
-
+  
       const data = await response.json();
+      console.log('Points data:', data); // Depuración
       setTotalPoints(data.totalPoints || 0);
     } catch (err) {
+      console.error('Fetch error:', err); // Depuración
       setError(`Error al cargar los puntos: ${err.message}`);
     } finally {
       setLoading(false);
