@@ -9,7 +9,7 @@ const LoyaltyPointsSummary = () => {
   const [error, setError] = useState(null); // Manejo de errores
 
   // URL del backend (ajusta según tu despliegue en Render)
-  const backendUrl = 'https://tu-backend-en-render/api/loyalty/calculate-points';
+  const backendUrl = 'https://asa-back-zs74.onrender.com/api/loyalty/calculate-points';
 
   // Función para obtener los puntos desde el backend
   const fetchPoints = async () => {
