@@ -7,13 +7,18 @@ import { useSelector } from 'react-redux';
 const InvoiceList = () => {
   const { user } = useSelector((state) => state.auth);
   const [invoices, setInvoices] = useState([]);
-  const [loading, setLoading] = useState(true); // Inicia en true para reflejar la carga inicial
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [startDate, setStartDate] = useState('2023-01-01');
   const [endDate, setEndDate] = useState('');
   const [clientId, setClientId] = useState(null);
 
   const apiKey = import.meta.env.VITE_KEY_CONTIFICO;
+
+  console.log('Estado completo de Redux auth:', useSelector((state) => state.auth));
+  console.log('User desde Redux:', user);
+  console.log('Todas las variables de entorno:', import.meta.env);
+  console.log('VITE_KEY_CONTIFICO:', import.meta.env.VITE_KEY_CONTIFICO);
 
   const formatDateForApi = (date) => {
     if (!date) return '';
@@ -111,7 +116,6 @@ const InvoiceList = () => {
     }
   };
 
-  // Ejecutar los fetches al montar el componente
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
@@ -120,11 +124,11 @@ const InvoiceList = () => {
         setClientId(id);
         await fetchInvoices(id);
       } else {
-        setLoading(false); // Si falla fetchClientId, detener la carga
+        setLoading(false);
       }
     };
     loadData();
-  }, [user?.identificacion]); // Dependencia en user?.identificacion para reaccionar a cambios
+  }, [user?.identificacion]);
 
   const handleFilter = () => {
     fetchInvoices(clientId);
