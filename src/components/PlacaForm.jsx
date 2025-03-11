@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { crearPlaca } from '../features/placas/placaSlice'
-import { TbSettingsExclamation } from 'react-icons/tb'
 
 const PlacaForm = () => {
 
@@ -14,8 +13,7 @@ const PlacaForm = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-
-        dispatch(crearPlaca({ placa, brand, model, owner }))
+        dispatch(crearPlaca({ placa, brand, model, owner}))
         setPlaca('')
     }
 

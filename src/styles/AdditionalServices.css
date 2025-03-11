@@ -1,7 +1,6 @@
 /* src/AdditionalServices.css */
 .AddServ {
-  padding: 3rem 1rem;
-  margin-top: 20px;
+  padding: 1rem;
   font-size: 20px;
   width: 100%;
   text-align: center;
@@ -11,14 +10,14 @@
   font-size: 2rem;
   font-weight: 700;
   color: #333;
-  margin-bottom: 2rem;
+  margin: 1rem;
 }
 
 .cards-container {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 2rem; /* Espacio entre las cards */
+  gap: 1rem; /* Espacio entre las cards */
   margin-top: 2rem;
 }
 
@@ -65,7 +64,7 @@
 
   .service-card {
     width: 80%; /* Para pantallas pequeñas, las cards serán más anchas */
-    margin-bottom: 1.5rem;
+    
   }
 
   .service-icon {

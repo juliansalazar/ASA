@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://asa-back-zs74.onrender.com/api/placas/'
+const API_URL = 'http://localhost:8080/api/placas' || 'https://asa-back-zs74.onrender.com/api/placas';
 
 //Crear Tarea
 const crearPlaca = async (placaData, token) => {
@@ -32,7 +32,7 @@ const deletePlaca = async (id, token) => {
             Authorization: `Bearer ${token}`
         }
     }
-    const response = await axios.delete(API_URL + id, config)
+    const response = await axios.delete(`${API_URL}/${id}`, config);
 
     return response.data
 }

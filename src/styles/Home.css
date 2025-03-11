@@ -1,5 +1,9 @@
 .main-content {
-    /* Reduce la escala */
     transform: scale(0.95);
     transition: transform 0.3s ease-in-out;
+}
+
+.welcome {
+    margin: 20px;
+    font-size: 22px;
 }

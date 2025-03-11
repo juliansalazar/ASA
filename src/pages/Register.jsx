@@ -13,10 +13,12 @@ const Register = () => {
         email: '',
         password: '',
         password2: '',
+        identificacion: '',
     });
     const [termsAccepted, setTermsAccepted] = useState(false);
+    const [isNaturalPerson, setIsNaturalPerson] = useState(true);
 
-    const { name, email, password, password2 } = formData;
+    const { name, email, password, password2, identificacion } = formData;
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
@@ -27,9 +29,8 @@ const Register = () => {
         }
         if (isSuccess) {
             toast.success('¡Registro exitoso! Inicia sesión para continuar.');
-            navigate('/login'); // O a '/' si autenticas automáticamente
+            navigate('/login');
         }
-        // Reset en cleanup
         return () => {
             dispatch(reset());
         };
@@ -43,27 +44,52 @@ const Register = () => {
         setTermsAccepted(e.target.checked);
     };
 
+    const onPersonTypeChange = (e) => {
+        setIsNaturalPerson(e.target.checked);
+        setFormData({ ...formData, identificacion: '' }); // Limpiar el campo al cambiar
+    };
+
     const onSubmit = (e) => {
         e.preventDefault();
 
-        // Validación
-        if (!name || !email || !password || !password2) {
+        // Validación de campos obligatorios
+        if (!name || !email || !password || !password2 || !identificacion) {
             toast.error('Por favor, completa todos los campos');
             return;
         }
+
+        // Validación de contraseñas
         if (password !== password2) {
             toast.error('Las contraseñas no coinciden');
             return;
         }
+
+        // Validación de términos y condiciones
         if (!termsAccepted) {
             toast.error('Debes aceptar los términos y condiciones');
             return;
+        }
+
+        // Validación de Cédula (10 dígitos) o RUC (13 dígitos)
+        const identificacionLength = identificacion.length;
+        if (isNaturalPerson) {
+            if (!/^\d{10}$/.test(identificacion)) {
+                toast.error('La cédula debe tener exactamente 10 dígitos numéricos');
+                return;
+            }
+        } else {
+            if (!/^\d{13}$/.test(identificacion)) {
+                toast.error('El RUC debe tener exactamente 13 dígitos numéricos');
+                return;
+            }
         }
 
         const userData = {
             name,
             email,
             password,
+            identificacion,
+            type: isNaturalPerson ? 'natural' : 'juridica',
         };
         dispatch(register(userData));
     };
@@ -92,7 +118,7 @@ const Register = () => {
                     </div>
                     <div className='form-group'>
                         <input
-                            type="email" // Cambiado a type="email"
+                            type="email"
                             className='form-control'
                             id='email'
                             name='email'
@@ -104,7 +130,7 @@ const Register = () => {
                     <div className='form-group'>
                         <input
                             type="password"
-                            className='form-control' // Corregido el typo
+                            className='form-control'
                             id='password'
                             name='password'
                             value={password}
@@ -120,6 +146,27 @@ const Register = () => {
                             name='password2'
                             value={password2}
                             placeholder='Confirma tu contraseña'
+                            onChange={onChange}
+                        />
+                    </div>
+                    <div className='form-group'>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={isNaturalPerson}
+                                onChange={onPersonTypeChange}
+                            />
+                            Persona Natural (Cédula) / Desmarcar para Persona Jurídica (RUC)
+                        </label>
+                    </div>
+                    <div className='form-group'>
+                        <input
+                            type="text"
+                            className='form-control'
+                            id='identificacion'
+                            name='identificacion'
+                            value={identificacion}
+                            placeholder={isNaturalPerson ? 'Cédula' : 'RUC'}
                             onChange={onChange}
                         />
                     </div>

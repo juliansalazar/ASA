@@ -1,29 +1,32 @@
-/* src/PlacaList.css */
+/* Estilos generales */
 .placa-list {
-    padding: 3rem 1rem;
     text-align: center;
+    padding: 20px;
 }
 
 .placa-list h2 {
     font-size: 2rem;
     font-weight: 700;
     color: #333;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
+/* Contenedor de tarjetas */
 .placas {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 2rem;
+    justify-content: center; /* Centramos las cards */
+    gap: 1rem;
 }
 
+/* Estilos para las tarjetas */
 .placa-card {
-    background-color: #f8f8f8; /* Fondo suave para las cards */
+    background-color: #f8f8f8; 
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 300px; /* Card un poco más ancha */
-    padding: 2rem;
+    width: 300px; 
+    max-width: 90%; /* Se adapta mejor en móviles */
+    padding: 1.5rem;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -32,17 +35,43 @@
     font-size: 1.25rem;
     font-weight: 600;
     color: #333;
-    margin-bottom: 1rem;
 }
 
 .placa-card p {
     font-size: 1rem;
     color: #666;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
+/* Estilos para el estado del mantenimiento */
+.status-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 8px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.status-badge.Al\ día {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-badge.Atrasado {
+    background-color: #dc3545;
+    color: white;
+}
+
+.status-badge.Próximo\ mantenimiento {
+    background-color: #ffc107;
+    color: black;
+}
+
+/* Botones */
 .placa-card-btn {
-    background-color: #4CAF50; /* Botón verde para interacción */
+    background-color: #4CAF50;
     color: #fff;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -50,6 +79,7 @@
     font-size: 1rem;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
 }
 
 .placa-card-btn:hover {
@@ -61,13 +91,34 @@
     transform: translateY(0);
 }
 
+/* RESPONSIVE */
+/* Ajustes para tablets y móviles */
 @media (max-width: 768px) {
     .placas {
         flex-direction: column;
         align-items: center;
+        gap: 1.5rem; /* Mayor separación en pantallas pequeñas */
     }
 
     .placa-card {
-        width: 80%;
+        width: 90%; /* Ocupará más espacio en móviles */
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .placa-card {
+        width: 95%; /* Casi toda la pantalla */
+        padding: 1.5rem;
+    }
+
+    .status-badge {
+        font-size: 0.85rem; /* Ajuste para pantallas más pequeñas */
+        padding: 5px 8px;
+    }
+
+    .placa-card-btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
     }
 }

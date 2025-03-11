@@ -1,0 +1,63 @@
+.cookie-consent {
+    position: fixed;
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para centrar perfectamente */
+    background-color: #ffffff;
+    color: #333;
+    padding: 20px; /* Aumenté un poco el padding para mejor legibilidad */
+    border-radius: 10px; /* Bordes más redondeados para un look centrado */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    z-index: 10000; /* Mantiene el aviso por encima del WhatsApp */
+    width: auto; /* Ancho relativo para adaptarse a pantallas */
+    height: auto;
+    max-width: 500px; /* Límite máximo de ancho */
+    text-align: center; /* Centra el texto */
+    display: flex;
+    flex-direction: column; /* Apila texto y botones en columna por defecto */
+    align-items: center;
+  }
+  
+  /* Media query para pantallas pequeñas (menos de 768px) */
+  @media (max-width: 768px) {
+    .cookie-consent {
+      padding: 15px; /* Reduce padding en móviles */
+      width: 85%; /* Ancho un poco más amplio en móviles */
+    }
+  
+    .cookie-buttons {
+      margin-top: 15px; /* Espacio entre texto y botones */
+      width: 100%;
+      display: flex;
+      justify-content: center; /* Centra los botones */
+      flex-wrap: wrap; /* Permite que los botones se ajusten */
+    }
+  
+    .cookie-buttons button {
+      margin: 5px; /* Margen entre botones */
+      padding: 8px 16px; /* Tamaño de botones ajustado */
+      width: 45%; /* Cada botón ocupa casi la mitad */
+    }
+  }
+  
+  /* Estilos para los botones */
+  .cookie-buttons button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    background-color: #2f2891;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 120px; /* Ancho fijo para botones en pantallas grandes */
+  }
+  
+  .cookie-buttons button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilo para el enlace */
+  .cookie-consent a {
+    color: #0056b3;
+    text-decoration: underline;
+  }

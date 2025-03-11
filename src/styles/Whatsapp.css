@@ -1,0 +1,18 @@
+.whatsapp-container {
+    position: fixed;
+    z-index: 1100; /* Mayor que el z-index: 1000 del CookieConsent */
+  }
+  
+  /* Ajusta el botón de WhatsApp para que no se superponga al CookieConsent en la parte superior */
+  .floating-whatsapp {
+    bottom: 20px; /* Por defecto está en la parte inferior derecha */
+    right: 20px;
+  }
+  
+  /* Media query para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .floating-whatsapp {
+      bottom: 10px; /* Reduce el espacio en móviles */
+      right: 10px;
+    }
+  }

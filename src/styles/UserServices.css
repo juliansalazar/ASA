@@ -1,0 +1,64 @@
+.user-services-container {
+    background-color: #f8f9fa;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .user-services-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin: 1rem;
+}
+  
+  .user-services-title {
+    font-size: 1.5rem;
+    color: #2f2891;
+    text-align: left;
+  }
+  
+  .user-services-card-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .user-services-card {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    align-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .user-services-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .user-services-link {
+    color: #2f2891;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .user-services-link:hover {
+    color: #0056b3;
+  }
+
+  .service-icon {
+    font-size: 3rem;
+    color: #4CAF50; /* Color verde para los iconos */
+    margin-bottom: 1rem;
+  }
+
+  .user-services-card h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+  }

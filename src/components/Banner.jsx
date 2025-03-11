@@ -13,8 +13,8 @@ const Banner = () => {
   // Listado de promociones
   const promotions = [
     {
-      title: `¡Dale la bienvenida a ${new Date().toLocaleString("es-ES", { month: "long" })} con tu auto al 100%!`,
-      description: "Si eres nuevo, obtén 50% OFF en Mano de Obra. ¡Tu primer servicio nos encanta!",
+      title: `Empieza ${new Date().toLocaleString("es-ES", { month: "long" })} al 100%`,
+      description: "Por tu primera visita, obtén 50% OFF en Mano de Obra",
       buttonText: "¡Reclama tu descuento ahora!",
       link: "https://wa.me/+593999966466?text=Hola%20Autocarest,%20estoy%20interesado%20en%20agendar%20una%20cita,%20soy%20un%20nuevo%20cliente!%20PROMOWEB:50%OFF",
     },
@@ -43,12 +43,11 @@ const Banner = () => {
   };
 
   return (
-    <section className="banner" role="banner">
+    <section className="banner" role="banner" onClick={handleWhatsAppClick}>
       <div>
         <h1>{promotion.title}</h1>
-        <h2 className="display-4">Tu auto merece lo mejor, ¡y nosotros también!</h2>
         <h3 className="lead">{promotion.description}</h3>
-        <p className="terms">*Aplican condiciones. ¡Oferta limitada!</p>
+        
         <button
           className="whatsapp-btn"
           onClick={handleWhatsAppClick}
@@ -57,6 +56,7 @@ const Banner = () => {
           <FaWhatsapp /> {promotion.buttonText}
         </button>
       </div>
+      <p className="terms">*Aplican condiciones. ¡Oferta limitada!</p>
     </section>
   );
 };
