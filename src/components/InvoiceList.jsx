@@ -44,7 +44,7 @@ const InvoiceList = () => {
       setError('La identificación no es válida');
       return;
     }
-
+    console.log(apiKey);
     try {
       const response = await fetch(
         `https://api.contifico.com/sistema/api/v1/persona/?${tipoIdentificacion}=${user.identificacion}`,
@@ -90,7 +90,7 @@ const InvoiceList = () => {
       let url = `https://api.contifico.com/sistema/api/v1/documento/?persona_id=${clientId}&tipo_documento=FAC`;
       if (startDate) url += `&fecha_inicial=${encodeURIComponent(formatDateForApi(startDate))}`;
       if (endDate) url += `&fecha_final=${encodeURIComponent(formatDateForApi(endDate))}`;
-
+      console.log(apiKey);
       const response = await fetch(url, {
         headers: {
           Authorization: apiKey,
@@ -114,7 +114,7 @@ const InvoiceList = () => {
   // Cargar el clientId al montar el componente y luego fetchInvoices automáticamente
   useEffect(() => {
     fetchClientId();
-  }, [clientId]);
+  }, [user.?identificacion]);
 
   // Ejecutar fetchInvoices automáticamente cuando cambie clientId
   useEffect(() => {
