@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://localhost:8080/api/products' || 'https://asa-back-zs74.onrender.com/api/products/';
+const API_URL =  'https://asa-back-zs74.onrender.com/api/products/'; // 'https://localhost:8080/api/products' ||
 
 //Crear producto
 
