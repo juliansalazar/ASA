@@ -7,6 +7,7 @@ import PlacaList from '../components/PlacaList';
 import UserServices from '../components/UserServices';
 import '../styles/Home.css';
 import { useSelector } from 'react-redux';
+import LoyaltyPointsSummary from '../components/LoyaltyPointsSummary';
 
 const Home = () => {
   const { user } = useSelector((state) => state.auth);
@@ -18,6 +19,7 @@ const Home = () => {
         {user && (
           <>
                 <h2 className='welcome'>Bienvenid@, {user?.name || 'Usuario'}!</h2>
+                <LoyaltyPointsSummary />
                 <UserServices />
                 <PlacaList />
           </>
