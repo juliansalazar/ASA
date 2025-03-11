@@ -133,7 +133,7 @@ const InvoiceList = () => {
 
       const response = await fetch(url, {
         headers: {
-          Authorization: apiKey, // Prueba sin "Bearer" primero
+          Authorization: `Bearer ${apiKey}`, // Prueba sin "Bearer" primero
         },
       });
       if (!response.ok) {
