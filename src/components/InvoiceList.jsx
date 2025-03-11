@@ -13,13 +13,13 @@ const InvoiceList = () => {
   const [endDate, setEndDate] = useState('');
   const [clientId, setClientId] = useState(null);
 
-  const apiKey = import.meta.env.VITE_KEY_CONTIFICO; // || 'abc123xyz'; // Descomenta y hardcodea temporalmente si sigue fallando
+  const apiKey = import.meta.env.VITE_CONTIFICO; // || 'abc123xyz'; // Descomenta y hardcodea temporalmente si sigue fallando
 
   console.log('Todas las variables de entorno:', import.meta.env);
-  console.log('VITE_KEY_CONTIFICO:', import.meta.env.VITE_KEY_CONTIFICO);
+  console.log('VITE_KEY_CONTIFICO:', import.meta.env.VITE_CONTIFICO);
   console.log('API Key final:', apiKey);
   if (!apiKey) {
-    console.error('ERROR: VITE_KEY_CONTIFICO no está definida. Revisa tu .env (local) o Settings > Environment Variables (Vercel).');
+    console.error('ERROR: VITE_CONTIFICO no está definida. Revisa tu .env (local) o Settings > Environment Variables (Vercel).');
     setError('La clave API no está configurada. Contacta al administrador.');
   }
 
