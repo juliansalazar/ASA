@@ -50,7 +50,7 @@ const InvoiceList = () => {
         `https://api.contifico.com/sistema/api/v1/persona/?${tipoIdentificacion}=${user.identificacion}`,
         {
           headers: {
-            Authorization: apiKey,
+            Authorization: `Bearer ${apiKey}`,
           },
         }
       );
@@ -93,7 +93,7 @@ const InvoiceList = () => {
       console.log(apiKey);
       const response = await fetch(url, {
         headers: {
-          Authorization: apiKey,
+          Authorization: `Bearer ${apiKey}`,
         },
       });
 
