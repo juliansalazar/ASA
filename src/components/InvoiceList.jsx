@@ -114,7 +114,7 @@ const InvoiceList = () => {
   // Cargar el clientId al montar el componente y luego fetchInvoices automáticamente
   useEffect(() => {
     fetchClientId();
-  }, [user.?identificacion]);
+  }, [user?.identificacion]);
 
   // Ejecutar fetchInvoices automáticamente cuando cambie clientId
   useEffect(() => {
