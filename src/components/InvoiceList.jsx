@@ -7,22 +7,20 @@ import { useSelector } from 'react-redux';
 const InvoiceList = () => {
   const { user } = useSelector((state) => state.auth);
   const [invoices, setInvoices] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Inicia en true para reflejar la carga inicial
   const [error, setError] = useState(null);
-  const [startDate, setStartDate] = useState('2023-01-01'); // Fecha predeterminada: 01/01/2024
-  const [endDate, setEndDate] = useState(''); // Dejamos endDate vacío para traer hasta la fecha actual
-  const [clientId, setClientId] = useState(null); // Estado para el clientId dinámico
+  const [startDate, setStartDate] = useState('2023-01-01');
+  const [endDate, setEndDate] = useState('');
+  const [clientId, setClientId] = useState(null);
 
   const apiKey = import.meta.env.VITE_KEY_CONTIFICO;
 
-  // Función para formatear la fecha
   const formatDateForApi = (date) => {
     if (!date) return '';
     const [year, month, day] = date.split('-');
     return `${day}/${month}/${year}`;
   };
 
-  // Validar fechas
   const validateDates = () => {
     if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
       return 'La fecha inicial no puede ser mayor que la fecha final';
@@ -30,21 +28,20 @@ const InvoiceList = () => {
     return null;
   };
 
-  // Obtener el clientId del usuario autenticado
   const fetchClientId = async () => {
+    console.log('fetchClientId ejecutado, user:', user);
     if (!user?.identificacion) {
       setError('El usuario no tiene una identificación válida');
-      return;
+      return null;
     }
 
-    // Determinar si es RUC o cédula
     const tipoIdentificacion = user.identificacion.length === 13 ? 'ruc' : user.identificacion.length === 10 ? 'cedula' : null;
-
     if (!tipoIdentificacion) {
       setError('La identificación no es válida');
-      return;
+      return null;
     }
-    console.log(apiKey);
+
+    console.log('API Key:', apiKey);
     try {
       const response = await fetch(
         `https://api.contifico.com/sistema/api/v1/persona/?${tipoIdentificacion}=${user.identificacion}`,
@@ -54,25 +51,27 @@ const InvoiceList = () => {
           },
         }
       );
-
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
-
       const userData = await response.json();
       if (userData.length > 0) {
-        setClientId(userData[0].id);
+        console.log('Client ID obtenido:', userData[0].id);
+        return userData[0].id;
       } else {
         setError('No se encontró el ID del cliente');
+        return null;
       }
     } catch (error) {
-      setError('Error al obtener el ID del cliente');
+      setError(`Error al obtener el ID del cliente: ${error.message}`);
+      console.error('Error en fetchClientId:', error);
+      return null;
     }
   };
 
-  // Fetch de facturas
-  const fetchInvoices = async () => {
-    if (!clientId) {
+  const fetchInvoices = async (clientIdToUse) => {
+    console.log('fetchInvoices ejecutado, clientId:', clientIdToUse);
+    if (!clientIdToUse) {
       setError('No se proporcionó un ID de cliente');
       return;
     }
@@ -87,47 +86,50 @@ const InvoiceList = () => {
       setLoading(true);
       setError(null);
 
-      let url = `https://api.contifico.com/sistema/api/v1/documento/?persona_id=${clientId}&tipo_documento=FAC`;
+      let url = `https://api.contifico.com/sistema/api/v1/documento/?persona_id=${clientIdToUse}&tipo_documento=FAC`;
       if (startDate) url += `&fecha_inicial=${encodeURIComponent(formatDateForApi(startDate))}`;
       if (endDate) url += `&fecha_final=${encodeURIComponent(formatDateForApi(endDate))}`;
-      console.log(apiKey);
+      console.log('Fetching invoices from:', url);
+      console.log('API Key:', apiKey);
+
       const response = await fetch(url, {
         headers: {
           Authorization: `Bearer ${apiKey}`,
         },
       });
-
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
-
       const data = await response.json();
       const filtered = Array.isArray(data) ? data.filter((invoice) => invoice.tipo_documento === 'FAC') : [];
       setInvoices(filtered);
     } catch (err) {
       setError(`Error al cargar las facturas: ${err.message}`);
+      console.error('Error en fetchInvoices:', err);
     } finally {
       setLoading(false);
     }
   };
 
-  // Cargar el clientId al montar el componente y luego fetchInvoices automáticamente
+  // Ejecutar los fetches al montar el componente
   useEffect(() => {
-    fetchClientId();
-  }, [setClientId]);
-
-  // Ejecutar fetchInvoices automáticamente cuando cambie clientId
-  useEffect(() => {
-    if (clientId) {
-      fetchInvoices();
-    }
-  }, [clientId]); // Dependencia en clientId para que se ejecute después de obtenerlo
+    const loadData = async () => {
+      setLoading(true);
+      const id = await fetchClientId();
+      if (id) {
+        setClientId(id);
+        await fetchInvoices(id);
+      } else {
+        setLoading(false); // Si falla fetchClientId, detener la carga
+      }
+    };
+    loadData();
+  }, [user?.identificacion]); // Dependencia en user?.identificacion para reaccionar a cambios
 
   const handleFilter = () => {
-    fetchInvoices();
+    fetchInvoices(clientId);
   };
 
-  // Resto del código (downloadPDF, JSX, etc.) permanece igual
   const downloadPDF = () => {
     if (invoices.length === 0) {
       alert('No hay facturas para descargar');
@@ -166,7 +168,7 @@ const InvoiceList = () => {
   };
 
   if (loading) return <div>Cargando facturas...</div>;
-  if (!clientId) return <div>Cargando información del cliente...</div>;
+  if (error) return <div className="error-message">{error}</div>;
 
   return (
     <div className="invoice-list-container">
@@ -189,11 +191,7 @@ const InvoiceList = () => {
             onChange={(e) => setEndDate(e.target.value)}
           />
         </div>
-        <button
-          className="refresh-button"
-          onClick={handleFilter}
-          disabled={loading}
-        >
+        <button className="refresh-button" onClick={handleFilter} disabled={loading}>
           {loading ? 'Filtrando...' : 'Filtrar'}
         </button>
         <button
@@ -205,9 +203,7 @@ const InvoiceList = () => {
         </button>
       </div>
 
-      {error && <div className="error-message">{error}</div>}
-
-      {invoices.length === 0 && !error ? (
+      {invoices.length === 0 ? (
         <p>No se encontraron facturas para el período seleccionado.</p>
       ) : (
         <div className="invoice-table-wrapper">
