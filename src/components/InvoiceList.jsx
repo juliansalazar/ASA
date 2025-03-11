@@ -13,12 +13,15 @@ const InvoiceList = () => {
   const [endDate, setEndDate] = useState('');
   const [clientId, setClientId] = useState(null);
 
-  const apiKey = import.meta.env.VITE_KEY_CONTIFICO;
+  const apiKey = import.meta.env.VITE_KEY_CONTIFICO; // || 'abc123xyz'; // Descomenta y hardcodea temporalmente si sigue fallando
 
-  console.log('Estado completo de Redux auth:', useSelector((state) => state.auth));
-  console.log('User desde Redux:', user);
   console.log('Todas las variables de entorno:', import.meta.env);
   console.log('VITE_KEY_CONTIFICO:', import.meta.env.VITE_KEY_CONTIFICO);
+  console.log('API Key final:', apiKey);
+  if (!apiKey) {
+    console.error('ERROR: VITE_KEY_CONTIFICO no está definida. Revisa tu .env (local) o Settings > Environment Variables (Vercel).');
+    setError('La clave API no está configurada. Contacta al administrador.');
+  }
 
   const formatDateForApi = (date) => {
     if (!date) return '';
@@ -35,36 +38,67 @@ const InvoiceList = () => {
 
   const fetchClientId = async () => {
     console.log('fetchClientId ejecutado, user:', user);
-    if (!user?.identificacion) {
-      setError('El usuario no tiene una identificación válida');
+  
+    // Validar existencia y formato básico de user.identificacion
+    if (!user || !user.identificacion || typeof user.identificacion !== 'string') {
+      setError('El usuario no tiene una identificación válida o no está autenticado');
       return null;
     }
-
-    const tipoIdentificacion = user.identificacion.length === 13 ? 'ruc' : user.identificacion.length === 10 ? 'cedula' : null;
+  
+    console.log('Identificación del usuario:', user.identificacion);
+  
+    // Validar que la identificación sea solo números y tenga longitud válida
+    const identificacion = user.identificacion.trim();
+    if (!/^\d+$/.test(identificacion)) {
+      setError('La identificación debe contener solo números');
+      return null;
+    }
+  
+    const tipoIdentificacion = identificacion.length === 13 ? 'ruc' : identificacion.length === 10 ? 'cedula' : null;
     if (!tipoIdentificacion) {
-      setError('La identificación no es válida');
+      setError(`La identificación debe tener 10 (cédula) o 13 (RUC) dígitos, pero tiene ${identificacion.length}`);
       return null;
     }
-
+  
     console.log('API Key:', apiKey);
+    if (!apiKey) {
+      setError('La clave API no está configurada en el servidor');
+      return null;
+    }
+  
     try {
-      const response = await fetch(
-        `https://api.contifico.com/sistema/api/v1/persona/?${tipoIdentificacion}=${user.identificacion}`,
-        {
-          headers: {
-            Authorization: `${apiKey}`,
-          },
-        }
-      );
+      const url = `https://api.contifico.com/sistema/api/v1/persona/?${tipoIdentificacion}=${identificacion}`;
+      console.log('Solicitando:', url);
+  
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${apiKey}`, // Ajusta según la documentación de Contifico
+        },
+      });
+  
       if (!response.ok) {
-        throw new Error(`Error ${response.status}: ${response.statusText}`);
+        const errorText = await response.text(); // Intenta obtener más detalles del error
+        throw new Error(`Error ${response.status}: ${response.statusText} - ${errorText}`);
       }
+  
       const userData = await response.json();
-      if (userData.length > 0) {
-        console.log('Client ID obtenido:', userData[0].id);
-        return userData[0].id;
+      console.log('Respuesta de la API:', userData);
+  
+      // Manejar diferentes formatos de respuesta
+      if (Array.isArray(userData)) {
+        if (userData.length > 0 && userData[0].id) {
+          console.log('Client ID obtenido:', userData[0].id);
+          return userData[0].id;
+        } else {
+          setError('No se encontró el ID del cliente en la respuesta');
+          return null;
+        }
+      } else if (userData && userData.id) {
+        // Si la API devuelve un objeto único
+        console.log('Client ID obtenido:', userData.id);
+        return userData.id;
       } else {
-        setError('No se encontró el ID del cliente');
+        setError('Formato de respuesta inesperado de la API');
         return null;
       }
     } catch (error) {
@@ -99,7 +133,7 @@ const InvoiceList = () => {
 
       const response = await fetch(url, {
         headers: {
-          Authorization: `${apiKey}`,
+          Authorization: apiKey, // Prueba sin "Bearer" primero
         },
       });
       if (!response.ok) {
