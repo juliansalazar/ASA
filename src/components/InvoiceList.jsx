@@ -13,7 +13,7 @@ const InvoiceList = () => {
   const [endDate, setEndDate] = useState('');
   const [clientId, setClientId] = useState(null);
 
-  const apiKey = import.meta.env.VITE_CONTIFICO; // || 'abc123xyz'; // Descomenta y hardcodea temporalmente si sigue fallando
+  const apiKey = import.meta.env.VITE_CONTIFICO || 'PJF858JmAbTrOBu8quv0IPaRPAQX5nbns9fsJxni4TI'; // Descomenta y hardcodea temporalmente si sigue fallando
 
   console.log('Todas las variables de entorno:', import.meta.env);
   console.log('VITE_KEY_CONTIFICO:', import.meta.env.VITE_CONTIFICO);
