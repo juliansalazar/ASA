@@ -60,7 +60,7 @@ const LoyaltyPointsSummary = () => {
 
   return (
     <div className="loyalty-points-container">
-      <h2>Tus Puntos de Lealtad</h2>
+      <h2>Tus Puntos</h2>
       {loading ? (
         <p>Cargando puntos...</p>
       ) : error ? (
