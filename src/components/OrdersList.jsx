@@ -11,7 +11,7 @@ const OrdersList = () => {
   const [startDate, setStartDate] = useState('2025-03-01'); // Fecha predeterminada
   const [endDate, setEndDate] = useState(''); // Fecha final opcional
 
-  const apiKey = import.meta.env.VITE_KEY_CONTIFICO || 'PJF858JmAbTrOBu8quv0IPaRPAQX5nbns9fsJxni4TI';
+  const apiKey = import.meta.env.VITE_CONTIFICO;
 
   // Función para formatear la fecha al formato DD/MM/YYYY requerido por Contifico
   const formatDateForApi = (date) => {

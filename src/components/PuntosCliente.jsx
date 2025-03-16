@@ -33,7 +33,7 @@ function PuntosCliente() {
           `https://api.contifico.com/sistema/api/v1/documento/?persona_id=${clientId}&tipo_documento=FAC`,
           {
             headers: {
-              Authorization: 'PJF858JmAbTrOBu8quv0IPaRPAQX5nbns9fsJxni4TI',
+              Authorization: import.meta.env.VITE_CONTIFICO,
             },
           }
         );
