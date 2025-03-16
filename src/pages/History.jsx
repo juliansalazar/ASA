@@ -2,7 +2,6 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Whatsapp from '../components/Whatsapp'
 import InvoiceList from '../components/InvoiceList'
-import ContificoId from '../components/ContificoId'
 
 const History = () => {
 
@@ -11,7 +10,6 @@ const History = () => {
             <Whatsapp />
             <Navbar />
             <InvoiceList />
-            <ContificoId />
             <Footer />
         </>
     )
