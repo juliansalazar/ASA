@@ -30,7 +30,7 @@ function PuntosCliente() {
         setError(null);
 
         const response = await axios.get(
-          `https://api.contifico.com/sistema/api/v1/documento/?persona_id=${clientId}&tipo_documento=FAC&fecha_inicial=01/01/2025`,
+          `https://api.contifico.com/sistema/api/v1/documento/?persona_id=${clientId}&tipo_documento=FAC`,
           {
             headers: {
               Authorization: 'PJF858JmAbTrOBu8quv0IPaRPAQX5nbns9fsJxni4TI',
