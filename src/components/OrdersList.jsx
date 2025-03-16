@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import '../styles/OrdersList.css';
+import Navbar from './Navbar'
 
 const OrdersList = () => {
   const [invoices, setInvoices] = useState([]);
@@ -113,6 +114,8 @@ const OrdersList = () => {
   if (loading) return <div>Cargando prefacturas pendientes...</div>;
 
   return (
+    <>
+    <Navbar/>
     <div className="invoice-list-container">
       <h2>Lista de Prefacturas Pendientes</h2>
 
@@ -182,6 +185,7 @@ const OrdersList = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
