@@ -6,6 +6,7 @@ import { LuCalendarClock } from "react-icons/lu";
 import { IoCarSportOutline } from "react-icons/io5";
 import { GiMechanicGarage } from "react-icons/gi";
 import { MdOutlineManageHistory } from "react-icons/md";
+import { CgToolbox } from "react-icons/cg";
 import { LuClipboardList } from "react-icons/lu"; // Icono para Work Order
 
 const UserServices = () => {
@@ -44,20 +45,30 @@ const UserServices = () => {
             <div className='service-icon'>
               <IoCarSportOutline />
             </div>
-            <h5>VEHÍCULOS</h5>
+            <h5>VEHICULOS</h5>
           </div>
         </Link>
 
         {/* Link a Work Order (visible solo si el usuario es admin) */}
         {user?.isAdmin && (
-          <Link to="/work-order" className="user-services-link">
-            <div className="user-services-card">
-              <div className='service-icon'>
-                <LuClipboardList />
+          <>
+            <Link to="/work-order" className="user-services-link">
+              <div className="user-services-card">
+                <div className='service-icon'>
+                  <LuClipboardList />
+                </div>
+                <h5>ORDENES</h5>
               </div>
-              <h5>ORDENES</h5>
-            </div>
-          </Link>
+            </Link>
+            <Link to="/orderslist" className="user-services-link">
+              <div className="user-services-card">
+                <div className='service-icon'>
+                  <CgToolbox />
+                </div>
+                <h5>TRABAJO</h5>
+              </div>
+            </Link>
+          </>
         )}
       </div>
     </div>

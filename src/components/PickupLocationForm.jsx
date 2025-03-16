@@ -27,7 +27,7 @@ const PickupLocationForm = () => {
     
     setMessage(`Ubicación confirmada: ${location}`);
     // Opcional: limpiar el input después de enviar
-    setLocation('');
+    // setLocation('');
   };
 
   return (

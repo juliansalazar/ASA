@@ -4,7 +4,7 @@
     text-align: center;
     padding: 0.9em;
     margin-top: 2em;
-    position: relative;
+    position: static;
     left: 0;
     bottom: 0;
     width: 100%;

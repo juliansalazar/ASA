@@ -10,7 +10,7 @@
 
 .banner .container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
 }
 
 .banner h1 {
@@ -89,27 +89,30 @@
 /* Responsividad */
 @media (max-width: 768px) {
     .banner {
-        padding: 1.5rem 1rem;
+        padding: auto;
+        margin: auto;
     }
 
     .banner h1 {
-        font-size: 1.75rem;
-    }
-
-    .banner .display-4 {
         font-size: 1.5rem;
     }
 
+    .banner .display-4 {
+        font-size: 1.0rem;
+    }
+
     .banner .lead {
-        font-size: 1.125rem;
+        font-size: 1.0rem;
+        margin: 10px;
+        color: #ffffff;
     }
 
     .banner .terms {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
     .banner .whatsapp-btn {
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
+        padding: auto;
+        font-size: 0.9rem;
     }
 }

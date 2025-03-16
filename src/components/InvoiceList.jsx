@@ -9,7 +9,7 @@ const InvoiceList = () => {
   const [invoices, setInvoices] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [startDate, setStartDate] = useState('2023-01-01'); // Fecha predeterminada: 01/01/2024
+  const [startDate, setStartDate] = useState('2025-01-01'); // Fecha predeterminada: 01/01/2024
   const [endDate, setEndDate] = useState(''); // Dejamos endDate vacío para traer hasta la fecha actual
   const [clientId, setClientId] = useState(null); // Estado para el clientId dinámico
 

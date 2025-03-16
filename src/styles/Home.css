@@ -1,9 +1,4 @@
 .main-content {
-    transform: scale(0.95);
+    margin: 10px;
     transition: transform 0.3s ease-in-out;
-}
-
-.welcome {
-    margin: 20px;
-    font-size: 22px;
 }

@@ -18,6 +18,8 @@ import CookieConsent from './components/CookieConsent';
 import Whatsapp from './components/Whatsapp';
 import PrivateRoute from './components/PrivateRoute.jsx';
 import History from './pages/History.jsx';
+import OrdersList from './components/OrdersList.jsx';
+import Pickup from './pages/Pickup.jsx';
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/pickup" element={<Pickup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           {/* Rutas protegidas */}
           <Route
@@ -65,7 +68,14 @@ function App() {
               </PrivateRoute>
             }
           />
-          {/* Ruta opcional para no autorizado */}
+          <Route
+            path="/orderslist"
+            element={
+              <PrivateRoute adminOnly={true}>
+                <OrdersList />
+              </PrivateRoute>
+            }
+          />
           <Route path="/unauthorized" element={<h1>No tienes permisos para acceder a esta página</h1>} />
         </Routes>
       </Router>

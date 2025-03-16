@@ -1,6 +1,6 @@
 .invoice-list-container {
   padding: 20px;
-  max-width: 1200px;
+  max-width: max-content;
   margin: 0 auto;
   overflow-x: auto;
 }

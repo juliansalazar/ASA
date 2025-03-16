@@ -15,8 +15,6 @@ const GoogleReview = () => {
     return (
         <div onClick={handleClick} style={{ cursor: 'pointer' }}>
             <ReactGoogleReviews layout="badge" featurableId={featurableWidgetId} />
-            <br />
-            <br />
         </div>
     );
 };

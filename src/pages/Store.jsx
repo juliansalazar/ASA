@@ -22,6 +22,7 @@ const Store = () => {
       try {
         setLoading(true);
         const response = await axios.get('https://asa-back-zs74.onrender.com/api/products');
+        console.log(response)
         setProducts(response.data);
       } catch (err) {
         setError('Error al cargar los productos');
