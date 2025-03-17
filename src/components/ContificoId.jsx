@@ -13,7 +13,7 @@ const ContificoId = () => {
   const [invoices, setInvoices] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const apiKey = import.meta.env.VITE_CONTIFICO
+  const apiKey = import.meta.env.REACT_APP_VITE_CONTIFICO
 
   // Obtener clientId al montar el componente
   useEffect(() => {
