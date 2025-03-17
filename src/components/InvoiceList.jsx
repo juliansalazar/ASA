@@ -13,7 +13,7 @@ const InvoiceList = () => {
   const [endDate, setEndDate] = useState(''); // Dejamos endDate vacío para traer hasta la fecha actual
   const [clientId, setClientId] = useState(null); // Estado para el clientId dinámico
 
-  const apiKey = {process.env.VITE_CONTIFICO};
+  const apiKey = process.env.VITE_CONTIFICO
 
   // Función para formatear la fecha
   const formatDateForApi = (date) => {
