@@ -4,6 +4,9 @@ import autoTable from 'jspdf-autotable';
 import '../styles/InvoiceList.css';
 import { useSelector } from 'react-redux';
 
+const apiKey = import.meta.env.VITE_CONTIFICO
+console.log(apiKey)
+
 const InvoiceList = () => {
   const { user } = useSelector((state) => state.auth);
   const [invoices, setInvoices] = useState([]);
@@ -13,9 +16,7 @@ const InvoiceList = () => {
   const [endDate, setEndDate] = useState(''); // Dejamos endDate vacío para traer hasta la fecha actual
   const [clientId, setClientId] = useState(null); // Estado para el clientId dinámico
 
-  const apiKey = import.meta.env.VITE_CONTIFICO
-  console.log(apiKey)
-
+  
   // Función para formatear la fecha
   const formatDateForApi = (date) => {
     if (!date) return '';
