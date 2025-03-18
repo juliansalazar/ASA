@@ -13,14 +13,7 @@ const InvoiceList = () => {
   const [endDate, setEndDate] = useState(''); // Dejamos endDate vacío para traer hasta la fecha actual
   const [clientId, setClientId] = useState(null); // Estado para el clientId dinámico
 
-  const apiKey = import.meta.env.VITE_CONTIFICO;
-  console.log('API Key:', apiKey); // Depuración básica
-  console.log('Entorno completo:', import.meta.env); // Ver todas las variables
-
-  // Si apiKey es undefined, muestra un error temprano
-  if (!apiKey) {
-    setError('La clave API no está definida. Verifica el archivo .env.');
-  }
+  console.log('Entorno completo en frontend:', import.meta.env); // Depuración del entorno
 
   // Función para formatear la fecha
   const formatDateForApi = (date) => {
@@ -37,16 +30,14 @@ const InvoiceList = () => {
     return null;
   };
 
-  // Obtener el clientId del usuario autenticado
+  // Obtener el clientId del usuario autenticado a través del backend
   const fetchClientId = async () => {
-    if (!apiKey) return; // Evita hacer fetch si no hay apiKey
     if (!user?.identificacion) {
       setError('El usuario no tiene una identificación válida');
       return;
     }
 
     const tipoIdentificacion = user.identificacion.length === 13 ? 'ruc' : user.identificacion.length === 10 ? 'cedula' : null;
-
     if (!tipoIdentificacion) {
       setError('La identificación no es válida');
       return;
@@ -54,30 +45,20 @@ const InvoiceList = () => {
 
     try {
       const response = await fetch(
-        `https://api.contifico.com/sistema/api/v1/persona/?${tipoIdentificacion}=${user.identificacion}`,
-        {
-          headers: {
-            Authorization: apiKey,
-          },
-        }
+        `/contifico/client-id?identificacion=${user.identificacion}&tipo=${tipoIdentificacion}`
       );
-
-      if (!response.ok) {
-        throw new Error(`Error ${response.status}: ${response.statusText}`);
-      }
-
-      const userData = await response.json();
-      if (userData.length > 0) {
-        setClientId(userData[0].id);
-      } else {
-        setError('No se encontró el ID del cliente');
+      const data = await response.json();
+      if (data.error) {
+        setError(data.error);
+      } else if (data.id) {
+        setClientId(data.id);
       }
     } catch (error) {
       setError('Error al obtener el ID del cliente: ' + error.message);
     }
   };
 
-  // Fetch de facturas
+  // Fetch de facturas a través del backend
   const fetchInvoices = async () => {
     if (!clientId) {
       setError('No se proporcionó un ID de cliente');
@@ -94,16 +75,11 @@ const InvoiceList = () => {
       setLoading(true);
       setError(null);
 
-      let url = `https://api.contifico.com/sistema/api/v1/documento/?persona_id=${clientId}&tipo_documento=FAC`;
-      if (startDate) url += `&fecha_inicial=${encodeURIComponent(formatDateForApi(startDate))}`;
-      if (endDate) url += `&fecha_final=${encodeURIComponent(formatDateForApi(endDate))}`;
+      let url = `/contifico/invoices?persona_id=${clientId}&tipo_documento=FAC`;
+      if (startDate) url += `&startDate=${encodeURIComponent(formatDateForApi(startDate))}`;
+      if (endDate) url += `&endDate=${encodeURIComponent(formatDateForApi(endDate))}`;
 
-      const response = await fetch(url, {
-        headers: {
-          Authorization: apiKey,
-        },
-      });
-
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
@@ -121,7 +97,6 @@ const InvoiceList = () => {
   // Cargar el clientId al montar el componente y luego fetchInvoices automáticamente
   useEffect(() => {
     fetchClientId();
-    console.log("Fetched client.");
   }, []);
 
   // Ejecutar fetchInvoices automáticamente cuando cambie clientId
