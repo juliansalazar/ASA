@@ -13,6 +13,10 @@ const InvoiceList = () => {
   const [endDate, setEndDate] = useState(''); // Dejamos endDate vacío para traer hasta la fecha actual
   const [clientId, setClientId] = useState(null); // Estado para el clientId dinámico
 
+  // Depuración del usuario
+  useEffect(() => {
+    console.log('Usuario desde Redux:', user);
+  }, [user]);
 
   // Función para formatear la fecha
   const formatDateForApi = (date) => {
@@ -31,14 +35,18 @@ const InvoiceList = () => {
 
   // Obtener el clientId del usuario autenticado a través del backend
   const fetchClientId = async () => {
+    console.log('Intentando obtener clientId para:', user?.identificacion);
+
     if (!user?.identificacion) {
       setError('El usuario no tiene una identificación válida');
+      console.log('Error: No hay identificación en user');
       return;
     }
 
     const tipoIdentificacion = user.identificacion.length === 13 ? 'ruc' : user.identificacion.length === 10 ? 'cedula' : null;
     if (!tipoIdentificacion) {
       setError('La identificación no es válida');
+      console.log('Error: Tipo de identificación no válido');
       return;
     }
 
@@ -46,14 +54,24 @@ const InvoiceList = () => {
       const response = await fetch(
         `/contifico/client-id?identificacion=${user.identificacion}&tipo=${tipoIdentificacion}`
       );
+      console.log('Respuesta del servidor:', response.status, response.statusText);
+
       const data = await response.json();
+      console.log('Datos recibidos:', data);
+
       if (data.error) {
         setError(data.error);
+        console.log('Error desde el backend:', data.error);
       } else if (data.id) {
         setClientId(data.id);
+        console.log('ClientId establecido:', data.id);
+      } else {
+        setError('Respuesta inesperada del servidor');
+        console.log('Respuesta inesperada:', data);
       }
     } catch (error) {
       setError('Error al obtener el ID del cliente: ' + error.message);
+      console.log('Error en fetch:', error);
     }
   };
 
@@ -61,6 +79,7 @@ const InvoiceList = () => {
   const fetchInvoices = async () => {
     if (!clientId) {
       setError('No se proporcionó un ID de cliente');
+      console.log('Error: No hay clientId');
       return;
     }
 
@@ -79,6 +98,8 @@ const InvoiceList = () => {
       if (endDate) url += `&endDate=${encodeURIComponent(formatDateForApi(endDate))}`;
 
       const response = await fetch(url);
+      console.log('Respuesta de facturas:', response.status, response.statusText);
+
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
@@ -88,6 +109,7 @@ const InvoiceList = () => {
       setInvoices(filtered);
     } catch (err) {
       setError(`Error al cargar las facturas: ${err.message}`);
+      console.log('Error en fetch de facturas:', err);
     } finally {
       setLoading(false);
     }
