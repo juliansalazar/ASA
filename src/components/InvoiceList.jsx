@@ -13,7 +13,7 @@ const InvoiceList = () => {
   const [endDate, setEndDate] = useState(''); // Dejamos endDate vacío para traer hasta la fecha actual
   const [clientId, setClientId] = useState(null); // Estado para el clientId dinámico
 
-  const apiKey = import.meta.env.APP_VITE_CONTIFICO
+  const apiKey = import.meta.env.VITE_CONTIFICO
   console.log(apiKey)
 
   // Función para formatear la fecha
