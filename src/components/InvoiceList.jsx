@@ -52,7 +52,7 @@ const InvoiceList = () => {
 
     try {
       const response = await fetch(
-        `/contifico/client-id?identificacion=${user.identificacion}&tipo=${tipoIdentificacion}`
+        `api/contifico/client-id?identificacion=${user.identificacion}&tipo=${tipoIdentificacion}`
       );
       console.log('Respuesta del servidor:', response.status, response.statusText);
 
