@@ -4,19 +4,24 @@ import autoTable from 'jspdf-autotable';
 import '../styles/InvoiceList.css';
 import { useSelector } from 'react-redux';
 
-const apiKey = import.meta.env.VITE_CONTIFICO
-console.log(apiKey)
-
 const InvoiceList = () => {
   const { user } = useSelector((state) => state.auth);
   const [invoices, setInvoices] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [startDate, setStartDate] = useState('2025-01-01'); // Fecha predeterminada: 01/01/2024
+  const [startDate, setStartDate] = useState('2025-01-01'); // Fecha predeterminada: 01/01/2025
   const [endDate, setEndDate] = useState(''); // Dejamos endDate vacío para traer hasta la fecha actual
   const [clientId, setClientId] = useState(null); // Estado para el clientId dinámico
 
-  
+  const apiKey = import.meta.env.VITE_CONTIFICO;
+  console.log('API Key:', apiKey); // Depuración básica
+  console.log('Entorno completo:', import.meta.env); // Ver todas las variables
+
+  // Si apiKey es undefined, muestra un error temprano
+  if (!apiKey) {
+    setError('La clave API no está definida. Verifica el archivo .env.');
+  }
+
   // Función para formatear la fecha
   const formatDateForApi = (date) => {
     if (!date) return '';
@@ -34,12 +39,12 @@ const InvoiceList = () => {
 
   // Obtener el clientId del usuario autenticado
   const fetchClientId = async () => {
+    if (!apiKey) return; // Evita hacer fetch si no hay apiKey
     if (!user?.identificacion) {
       setError('El usuario no tiene una identificación válida');
       return;
     }
 
-    // Determinar si es RUC o cédula
     const tipoIdentificacion = user.identificacion.length === 13 ? 'ruc' : user.identificacion.length === 10 ? 'cedula' : null;
 
     if (!tipoIdentificacion) {
@@ -68,7 +73,7 @@ const InvoiceList = () => {
         setError('No se encontró el ID del cliente');
       }
     } catch (error) {
-      setError('Error al obtener el ID del cliente');
+      setError('Error al obtener el ID del cliente: ' + error.message);
     }
   };
 
@@ -129,7 +134,7 @@ const InvoiceList = () => {
     fetchInvoices();
   };
 
-  // Resto del código (downloadPDF, JSX, etc.) permanece igual
+  // Descargar PDF
   const downloadPDF = () => {
     if (invoices.length === 0) {
       alert('No hay facturas para descargar');
